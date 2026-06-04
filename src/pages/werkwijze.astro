@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import StepCard from '../components/StepCard.astro';
+import Button from '../components/Button.astro';
+
+const stappen = [
+  {
+    number: 1,
+    title: 'Kennismaking',
+    subtitle: 'Uw vraag staat centraal',
+    description: 'We beginnen met een vrijblijvend gesprek. U vertelt over uw organisatie, de situatie en wat u bezighoudt. Ik stel vragen, denk hardop mee en geef een eerste indruk van hoe ik kan helpen. Geen verplichtingen, geen standaardpraatje. Gewoon een goed gesprek om te ontdekken of er een klik is en of samenwerking meerwaarde heeft.',
+  },
+  {
+    number: 2,
+    title: 'Analyse',
+    subtitle: 'Begrijpen wat er speelt',
+    description: 'Als we besluiten samen te werken, start ik met een grondige analyse. Ik kijk naar de organisatiecontext, de leercultuur, de betrokkenen en de onderliggende oorzaken van het vraagstuk. Dit doe ik door gesprekken met medewerkers en leidinggevenden, documentanalyse en observatie — afhankelijk van wat de situatie vraagt. Ik ga niet af op aannames, maar op wat er echt speelt.',
+  },
+  {
+    number: 3,
+    title: 'Advies',
+    subtitle: 'Richting en aanpak',
+    description: 'Op basis van de analyse presenteer ik mijn bevindingen en een concreet advies. Ik benoem wat ik zie, verklaar waarom, en doe gerichte aanbevelingen. Het advies is altijd uitvoerbaar en afgestemd op uw organisatie. Geen dik rapport dat in een la verdwijnt, maar een helder document dat u daadwerkelijk verder helpt.',
+  },
+  {
+    number: 4,
+    title: 'Implementatie',
+    subtitle: 'Samen aan de slag',
+    description: 'Als de opdracht ook begeleiding bij de uitvoering omvat, ondersteun ik de implementatie actief. Ik begeleid teams, faciliteer sessies, bewak de voortgang en stuur bij waar nodig. Ik werk nauw samen met de mensen in uw organisatie — want duurzame verandering komt van binnenuit.',
+  },
+  {
+    number: 5,
+    title: 'Borging',
+    subtitle: 'Duurzaam verankerd',
+    description: 'Een traject is pas geslaagd als de verandering beklijft. Samen zorgen we dat de nieuwe aanpak, het geleerde of de verbeterde werkwijze wordt ingebed in de organisatie. Ik sluit een traject altijd af met een evaluatie: wat heeft het opgeleverd, wat hebben we geleerd, en welke stappen zijn er eventueel nog nodig?',
+  },
+];
+---
+
+<BaseLayout
+  title="Werkwijze — Van Inzicht naar Impact"
+  description="Van kennismaking tot borging: zo verloopt een samenwerking met Lysette Hakvoort, adviseur leren & ontwikkelen in de zorg."
+>
+
+  <!-- Page hero -->
+  <section class="bg-stone-50 border-b border-stone-100 py-16 lg:py-20">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <SectionHeading
+          label="Werkwijze"
+          title="Zo werken we samen"
+          subtitle="Elke samenwerking is anders. Toch verloopt elk traject langs dezelfde vijf stappen — van eerste kennismaking tot duurzame borging. Zo weet u altijd waar we staan en wat u kunt verwachten."
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Stappen -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl">
+        {stappen.map((stap, i) => (
+          <StepCard
+            number={stap.number}
+            title={stap.title}
+            subtitle={stap.subtitle}
+            description={stap.description}
+            isLast={i === stappen.length - 1}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Kernwaarden -->
+  <section class="py-16 bg-stone-50">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="reveal text-center mb-12">
+        <h2 class="font-serif text-heading text-olive-dark">Hoe ik altijd werk</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+        {[
+          { icon: '👂', value: 'Luisteren', label: 'Ik begin met echt luisteren — niet met een standaardaanpak.' },
+          { icon: '💡', value: 'Eerlijk', label: 'U weet waar u aan toe bent, ook als de boodschap scherp is.' },
+          { icon: '🎯', value: 'Resultaatgericht', label: 'Elk traject is gericht op duurzaam resultaat in de praktijk.' },
+        ].map((item, i) => (
+          <div class={`reveal reveal-delay-${i + 1} text-center bg-white rounded-2xl p-6 border border-stone-100`}>
+            <div class="text-4xl mb-3" aria-hidden="true">{item.icon}</div>
+            <div class="font-serif font-semibold text-olive-dark text-lg mb-2">{item.value}</div>
+            <p class="text-ink-muted text-sm">{item.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8 text-center">
+      <div class="reveal max-w-xl mx-auto">
+        <h2 class="font-serif text-2xl text-olive-dark mb-3">Klaar voor een eerste stap?</h2>
+        <p class="text-ink-muted mb-7">Een kennismaking is altijd vrijblijvend. Plan een gesprek en ontdek of samenwerking iets voor u is.</p>
+        <Button href="/contact" variant="secondary" size="lg">Start met een kennismaking</Button>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,261 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ExpertiseCard from '../components/ExpertiseCard.astro';
+
+const expertise = [
+  {
+    icon: '🏥',
+    title: 'Verpleegkundig leren',
+    description: 'Analyse en versterking van leerprocessen op de werkvloer — afgestemd op de realiteit van verpleegkundige zorgverlening.',
+  },
+  {
+    icon: '🔧',
+    title: 'Werkplekleren',
+    description: 'Leren dichtbij de praktijk organiseren: effectief, toepasbaar en direct verbonden aan het dagelijks werk.',
+  },
+  {
+    icon: '📋',
+    title: 'Scholingsprogramma\'s',
+    description: 'Ontwikkeling van gerichte scholing die aansluit bij competentiebehoefte, context en accreditatie-eisen.',
+  },
+  {
+    icon: '📈',
+    title: 'Kwaliteitsverbetering',
+    description: 'Verbinding leggen tussen leren en kwaliteit van zorg — structureel en meetbaar.',
+  },
+  {
+    icon: '🔄',
+    title: 'Implementatiebegeleiding',
+    description: 'Verandertrajecten begeleiden van plan naar praktijk, met aandacht voor draagvlak en borging.',
+  },
+  {
+    icon: '🎯',
+    title: 'Projectleiding',
+    description: 'Regie voeren op complexe vraagstukken rondom professionele ontwikkeling en organisatieverandering.',
+  },
+];
+
+const onderscheidend = [
+  {
+    icon: '🎓',
+    title: 'Academisch én praktisch',
+    description: 'Met een doctoraat in verpleegkundig leren combineer ik wetenschappelijk inzicht met jarenlange praktijkervaring in de zorg. Geen theorie zonder toepassing.',
+  },
+  {
+    icon: '🤝',
+    title: 'Direct en persoonlijk',
+    description: 'Als eenmanszaak heeft u altijd direct contact met mij. Geen accountmanagers, geen wisselende projectteams — gewoon een betrokken adviseur die uw organisatie kent.',
+  },
+  {
+    icon: '⚡',
+    title: 'Van analyse naar actie',
+    description: 'Ik lever geen rapporten die in een la verdwijnen. Mijn adviezen zijn concreet, uitvoerbaar en gericht op echte verandering in de dagelijkse zorgpraktijk.',
+  },
+];
+---
+
+<BaseLayout
+  title="Van Inzicht naar Impact — Adviseur verpleegkundig leren"
+  description="Lysette Hakvoort adviseert zorgorganisaties over leren, scholing en professionele ontwikkeling van verpleegkundigen."
+>
+
+  <!-- ===== HERO ===== -->
+  <section class="relative bg-gradient-to-br from-olive-dark via-olive to-olive/80 text-white overflow-hidden">
+    <!-- Decorative background -->
+    <div class="absolute inset-0 opacity-10" aria-hidden="true">
+      <div class="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-olive-light -translate-y-1/2 translate-x-1/4 blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-copper -translate-y-1/4 -translate-x-1/4 blur-3xl"></div>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-6 lg:px-8 py-24 lg:py-32">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-8">
+          <span class="w-1.5 h-1.5 rounded-full bg-olive-light animate-pulse" aria-hidden="true"></span>
+          <span class="text-sm text-white/90">Dr. Lysette Hakvoort · Adviseur verpleegkundig leren</span>
+        </div>
+
+        <h1 class="font-serif text-display font-bold text-white mb-6 leading-tight">
+          Van inzicht naar impact<br class="hidden sm:block" />
+          <span class="text-olive-light">in de zorg</span>
+        </h1>
+
+        <p class="text-lg text-white/80 leading-relaxed mb-10 max-w-2xl">
+          Ik help zorgorganisaties om de professionele ontwikkeling van verpleegkundigen duurzaam te versterken — van analyse tot concrete verandering in de praktijk.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="/diensten"
+            class="inline-flex items-center gap-2 bg-white text-olive-dark font-semibold px-7 py-3.5 rounded-lg hover:bg-stone-50 transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
+            Bekijk mijn diensten
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a
+            href="/contact"
+            class="inline-flex items-center gap-2 bg-transparent border-2 border-white/60 text-white font-semibold px-7 py-3.5 rounded-lg hover:bg-white/10 hover:border-white transition-all duration-200"
+          >
+            Maak een afspraak
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wave divider -->
+    <div class="absolute bottom-0 left-0 right-0" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
+        <path d="M0 60L60 50C120 40 240 20 360 15C480 10 600 20 720 27.5C840 35 960 40 1080 37.5C1200 35 1320 25 1380 20L1440 15V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="white"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===== KERNBOODSCHAP ===== -->
+  <section class="py-20 lg:py-28">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div class="reveal">
+          <SectionHeading
+            label="Waar ik voor sta"
+            title="Leren dat beklijft. Verandering die werkt."
+          />
+        </div>
+        <div class="reveal reveal-delay-2 space-y-4 text-ink-muted leading-relaxed">
+          <p>
+            Zorgprofessionals willen leren en groeien. Maar in de dagelijkse praktijk staan tijd, werkdruk en organisatiestructuren dat vaak in de weg. Ik breng in kaart wat leren belemmert en vertaal dat naar een aanpak die wél werkt — praktisch, onderbouwd en afgestemd op uw organisatie.
+          </p>
+          <p>
+            Als adviseur verpleegkundig leren werk ik aan de verbinding tussen strategie en werkvloer. Niet met kant-en-klare oplossingen, maar met gerichte vragen, scherpe analyse en een aanpak die past bij uw context.
+          </p>
+          <div class="pt-2">
+            <a href="/over-mij" class="inline-flex items-center gap-2 text-olive font-medium hover:text-olive-dark transition-colors">
+              Lees meer over mij
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERTISEGEBIEDEN ===== -->
+  <section class="py-20 lg:py-28 bg-stone-50">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="reveal text-center mb-14">
+        <SectionHeading
+          label="Expertisegebieden"
+          title="Waar ik u mee help"
+          subtitle="Mijn expertise ligt op het snijvlak van leren, kwaliteit en zorgpraktijk."
+          align="center"
+        />
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {expertise.map((item, i) => (
+          <ExpertiseCard
+            title={item.title}
+            description={item.description}
+            icon={item.icon}
+            delay={Math.min(i + 1, 5) as 1 | 2 | 3 | 4 | 5}
+          />
+        ))}
+      </div>
+      <div class="text-center mt-10 reveal">
+        <Button href="/diensten" variant="primary">Bekijk alle diensten</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WERKWIJZE PREVIEW ===== -->
+  <section class="py-20 lg:py-28">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div class="reveal">
+          <SectionHeading
+            label="Werkwijze"
+            title="Hoe we samenwerken"
+            subtitle="Een samenwerking begint altijd met luisteren. Van kennismaking tot borging werk ik stap voor stap — helder, betrokken en gericht op resultaat."
+          />
+          <div class="mt-8">
+            <Button href="/werkwijze" variant="outline">Lees meer over mijn werkwijze</Button>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          {[
+            { n: '01', title: 'Kennismaking', sub: 'Uw vraag centraal' },
+            { n: '02', title: 'Analyse', sub: 'Begrijpen wat er speelt' },
+            { n: '03', title: 'Advies', sub: 'Richting en aanpak' },
+            { n: '04', title: 'Implementatie', sub: 'Samen aan de slag' },
+            { n: '05', title: 'Borging', sub: 'Duurzaam verankerd' },
+          ].map((step, i) => (
+            <div class={`reveal reveal-delay-${i + 1} flex items-center gap-4 bg-white rounded-xl px-5 py-4 border border-stone-100 hover:border-olive/20 hover:shadow-sm transition-all duration-200`}>
+              <span class="font-serif font-bold text-olive/30 text-lg w-8 flex-shrink-0">{step.n}</span>
+              <div class="w-px h-8 bg-stone-200 flex-shrink-0"></div>
+              <div>
+                <div class="font-semibold text-ink text-sm">{step.title}</div>
+                <div class="text-ink-muted text-xs">{step.sub}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WAAROM SAMENWERKEN ===== -->
+  <section class="py-20 lg:py-28 bg-stone-50">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="reveal text-center mb-14">
+        <SectionHeading
+          label="Waarom samenwerken"
+          title="Wat u van mij kunt verwachten"
+          align="center"
+        />
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {onderscheidend.map((item, i) => (
+          <div class={`reveal reveal-delay-${i + 1} text-center px-4`}>
+            <div class="w-16 h-16 rounded-2xl bg-white shadow-sm border border-stone-100 flex items-center justify-center mx-auto mb-5">
+              <span class="text-3xl" aria-hidden="true">{item.icon}</span>
+            </div>
+            <h3 class="font-serif font-semibold text-olive-dark text-xl mb-3">{item.title}</h3>
+            <p class="text-ink-muted leading-relaxed text-sm">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BLOK ===== -->
+  <section class="py-20 lg:py-28">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="reveal bg-gradient-to-br from-olive-dark to-olive rounded-3xl px-8 py-16 lg:px-16 text-center text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" aria-hidden="true">
+          <div class="absolute top-0 right-0 w-64 h-64 rounded-full bg-olive-light blur-3xl"></div>
+          <div class="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-copper blur-3xl"></div>
+        </div>
+        <div class="relative">
+          <h2 class="font-serif text-heading text-white mb-4">Klaar om het gesprek aan te gaan?</h2>
+          <p class="text-white/80 max-w-xl mx-auto mb-8 leading-relaxed">
+            Heeft uw organisatie een vraagstuk op het gebied van leren, ontwikkeling of kwaliteitsverbetering? Ik denk graag met u mee — vrijblijvend en gericht.
+          </p>
+          <a
+            href="/contact"
+            class="inline-flex items-center gap-2 bg-copper hover:bg-copper-dark text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
+            Neem contact op
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

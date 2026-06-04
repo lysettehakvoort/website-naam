@@ -1,0 +1,63 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = '/og-default.svg',
+  noindex = false,
+} = Astro.props;
+
+const siteUrl = 'https://www.vaninzichtnaarimpact.nl';
+const resolvedCanonical = canonical ?? new URL(Astro.url.pathname, siteUrl).href;
+const resolvedOgImage = new URL(ogImage, siteUrl).href;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={resolvedCanonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={resolvedCanonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={resolvedOgImage} />
+<meta property="og:locale" content="nl_NL" />
+<meta property="og:site_name" content="van Inzicht naar Impact" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={resolvedOgImage} />
+
+<!-- Structured Data: Person + LocalBusiness -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Dr. Lysette Hakvoort",
+  "jobTitle": "Adviseur verpleegkundig leren",
+  "url": siteUrl,
+  "email": "vaninzichtnaarimpact@outlook.com",
+  "telephone": "+31623922983",
+  "sameAs": ["https://www.linkedin.com/in/lysette-hakvoort"],
+  "worksFor": {
+    "@type": "LocalBusiness",
+    "name": "van Inzicht naar Impact",
+    "url": siteUrl,
+    "description": "Adviesbureau voor verpleegkundig leren en professionele ontwikkeling in de zorg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "NL"
+    }
+  }
+})} />

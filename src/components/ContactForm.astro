@@ -1,0 +1,141 @@
+---
+// Contact form — gebruik Formspree (vervang YOUR_FORM_ID) of een andere formservice
+// Voor Netlify: voeg data-netlify="true" toe aan het form element
+---
+
+<form
+  action="https://formspree.io/f/YOUR_FORM_ID"
+  method="POST"
+  class="flex flex-col gap-5"
+  id="contact-form"
+  novalidate
+>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <div>
+      <label for="name" class="block text-sm font-medium text-ink mb-1.5">
+        Naam <span class="text-copper" aria-hidden="true">*</span>
+      </label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        autocomplete="name"
+        class="w-full px-4 py-3 rounded-lg border border-stone-200 text-ink text-sm placeholder:text-ink-muted/60 focus:outline-none focus:ring-2 focus:ring-olive/30 focus:border-olive transition-colors duration-200 bg-white"
+        placeholder="Uw naam"
+      />
+    </div>
+    <div>
+      <label for="organisation" class="block text-sm font-medium text-ink mb-1.5">
+        Organisatie
+      </label>
+      <input
+        type="text"
+        id="organisation"
+        name="organisation"
+        autocomplete="organization"
+        class="w-full px-4 py-3 rounded-lg border border-stone-200 text-ink text-sm placeholder:text-ink-muted/60 focus:outline-none focus:ring-2 focus:ring-olive/30 focus:border-olive transition-colors duration-200 bg-white"
+        placeholder="Naam van uw organisatie"
+      />
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <div>
+      <label for="email" class="block text-sm font-medium text-ink mb-1.5">
+        E-mailadres <span class="text-copper" aria-hidden="true">*</span>
+      </label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        autocomplete="email"
+        class="w-full px-4 py-3 rounded-lg border border-stone-200 text-ink text-sm placeholder:text-ink-muted/60 focus:outline-none focus:ring-2 focus:ring-olive/30 focus:border-olive transition-colors duration-200 bg-white"
+        placeholder="naam@organisatie.nl"
+      />
+    </div>
+    <div>
+      <label for="phone" class="block text-sm font-medium text-ink mb-1.5">
+        Telefoonnummer
+      </label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        autocomplete="tel"
+        class="w-full px-4 py-3 rounded-lg border border-stone-200 text-ink text-sm placeholder:text-ink-muted/60 focus:outline-none focus:ring-2 focus:ring-olive/30 focus:border-olive transition-colors duration-200 bg-white"
+        placeholder="06-..."
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="message" class="block text-sm font-medium text-ink mb-1.5">
+      Uw vraag of bericht <span class="text-copper" aria-hidden="true">*</span>
+    </label>
+    <textarea
+      id="message"
+      name="message"
+      required
+      rows="5"
+      class="w-full px-4 py-3 rounded-lg border border-stone-200 text-ink text-sm placeholder:text-ink-muted/60 focus:outline-none focus:ring-2 focus:ring-olive/30 focus:border-olive transition-colors duration-200 bg-white resize-none"
+      placeholder="Beschrijf uw vraagstuk of wat u van mij verwacht..."
+    ></textarea>
+  </div>
+
+  <div id="form-feedback" class="hidden rounded-lg p-4 text-sm" role="alert" aria-live="polite"></div>
+
+  <button
+    type="submit"
+    class="inline-flex items-center justify-center gap-2 bg-copper hover:bg-copper-dark text-white font-medium px-8 py-3.5 rounded-lg transition-all duration-200 hover:shadow-md self-start"
+  >
+    <span>Verstuur bericht</span>
+    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+    </svg>
+  </button>
+
+  <p class="text-xs text-ink-muted">
+    Velden met <span class="text-copper">*</span> zijn verplicht. Ik reageer binnen twee werkdagen.
+  </p>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const feedback = document.getElementById('form-feedback');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    btn.disabled = true;
+    btn.textContent = 'Bezig met versturen...';
+
+    try {
+      const data = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      });
+
+      if (response.ok) {
+        form.reset();
+        if (feedback) {
+          feedback.className = 'rounded-lg p-4 text-sm bg-olive/10 text-olive-dark border border-olive/20';
+          feedback.textContent = 'Bedankt voor uw bericht. Ik neem zo snel mogelijk contact met u op.';
+        }
+      } else {
+        throw new Error('Verzenden mislukt');
+      }
+    } catch {
+      if (feedback) {
+        feedback.className = 'rounded-lg p-4 text-sm bg-red-50 text-red-700 border border-red-200';
+        feedback.textContent = 'Er is iets misgegaan. Stuur uw bericht rechtstreeks naar vaninzichtnaarimpact@outlook.com';
+      }
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<span>Verstuur bericht</span><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>';
+    }
+  });
+</script>

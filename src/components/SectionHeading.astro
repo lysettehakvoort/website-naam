@@ -1,0 +1,29 @@
+---
+interface Props {
+  label?: string;
+  title: string;
+  subtitle?: string;
+  align?: 'left' | 'center';
+  titleClass?: string;
+}
+
+const { label, title, subtitle, align = 'left', titleClass = '' } = Astro.props;
+const textAlign = align === 'center' ? 'text-center items-center' : 'text-left items-start';
+---
+
+<div class={`flex flex-col gap-3 ${textAlign}`}>
+  {label && (
+    <span class="inline-flex items-center gap-2 text-copper font-semibold text-xs uppercase tracking-widest">
+      <span class="w-6 h-px bg-copper inline-block" aria-hidden="true"></span>
+      {label}
+    </span>
+  )}
+  <h2 class={`font-serif text-heading text-olive-dark ${titleClass}`}>
+    {title}
+  </h2>
+  {subtitle && (
+    <p class={`text-ink-muted leading-relaxed max-w-2xl ${align === 'center' ? 'mx-auto' : ''}`}>
+      {subtitle}
+    </p>
+  )}
+</div>

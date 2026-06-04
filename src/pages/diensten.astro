@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import Button from '../components/Button.astro';
+
+const diensten = [
+  {
+    icon: '🏥',
+    title: 'Advies verpleegkundig leren',
+    challenge: 'Verpleegkundigen willen zich ontwikkelen, maar de organisatie weet niet altijd hoe ze dat structureel kunnen faciliteren. Leeractiviteiten sluiten niet aan bij de werkpraktijk, het scholingsaanbod is versnipperd, of er is geen helder beeld van wat er nodig is.',
+    approach: 'Ik analyseer de leercultuur, leerbehoeften en organisatiestructuur. Op basis daarvan geef ik concreet advies over hoe leren beter kan worden gefaciliteerd — aansluitend bij de werkpraktijk, de competentieprofielen en de strategische doelen van uw organisatie.',
+    result: 'Een helder advies met concrete aanbevelingen. Organisaties krijgen inzicht in wat leren belemmert én wat het versterkt, zodat zij gerichte stappen kunnen zetten.',
+  },
+  {
+    icon: '📋',
+    title: 'Scholingsprogramma\'s ontwikkelen',
+    challenge: 'Er is behoefte aan scholing, maar het ontbreekt aan een samenhangend programma dat aansluit bij de competentiebehoeften van verpleegkundigen, de accreditatie-eisen en de dagelijkse werkpraktijk.',
+    approach: 'Samen met uw organisatie breng ik de scholingsbehoefte in kaart en vertaal ik deze naar een concreet programma. Ik begeleid het ontwerpproces van analyse tot eindproduct — met aandacht voor didactische kwaliteit, uitvoerbaarheid en accreditatie.',
+    result: 'Een scholingsprogramma dat werkt: goed onderbouwd, praktisch toepasbaar en gedragen door de professionals voor wie het is bedoeld.',
+  },
+  {
+    icon: '📈',
+    title: 'Kwaliteitsverbetering via leren',
+    challenge: 'Kwaliteitsverbetering en leren worden in veel organisaties los van elkaar gezien. Daardoor blijven verbeterinitiatieven hangen op papier en vinden ze geen vertaling naar de dagelijkse praktijk van zorgverlening.',
+    approach: 'Ik breng de verbinding tot stand tussen leren en kwaliteit. Ik werk met teams en leidinggevenden aan een aanpak waarbij leren en verbeteren hand in hand gaan — gebaseerd op inzicht in wat er echt speelt op de werkvloer.',
+    result: 'Verbetertrajecten die beklijven. Zorgprofessionals die eigenaarschap nemen over kwaliteit, omdat leren en verbeteren in hun dagelijks werk verweven zijn.',
+  },
+  {
+    icon: '🔄',
+    title: 'Implementatiebegeleiding',
+    challenge: 'Nieuwe werkwijzen, protocollen of organisatiestructuren worden ingevoerd, maar de implementatie verloopt moeizaam. Er is weerstand, het tempo valt tegen, of de verandering beklijft niet.',
+    approach: 'Ik begeleid de implementatie van verandertrajecten met aandacht voor de menselijke kant van verandering. Ik werk aan draagvlak, communicatie en concrete vertaling van de verandering naar de werkvloer — stap voor stap, samen met de betrokkenen.',
+    result: 'Een implementatie die slaagt doordat medewerkers de verandering begrijpen, onderschrijven en in de praktijk brengen. Met blijvend resultaat als doel.',
+  },
+  {
+    icon: '🎯',
+    title: 'Projectleiding leren & ontwikkeling',
+    challenge: 'Er is een complex vraagstuk rondom professionele ontwikkeling of organisatieverandering, maar binnen de organisatie ontbreekt de capaciteit of expertise om dit te leiden.',
+    approach: 'Ik neem de projectleiding op mij voor trajecten op het gebied van leren, ontwikkeling en kwaliteitsverbetering. Ik breng structuur, verbind partijen en stuur op resultaat — met oog voor de organisatiecontext en de betrokkenen.',
+    result: 'Een goed geleid traject dat op tijd, binnen scope en met draagvlak wordt afgerond. Met een tastbaar resultaat dat de organisatie verder brengt.',
+  },
+];
+---
+
+<BaseLayout
+  title="Diensten — Van Inzicht naar Impact"
+  description="Advies, scholingsontwikkeling, kwaliteitsverbetering en implementatiebegeleiding voor zorginstellingen en ziekenhuizen."
+>
+
+  <!-- Page hero -->
+  <section class="bg-stone-50 border-b border-stone-100 py-16 lg:py-20">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <SectionHeading
+          label="Diensten"
+          title="Advies en begeleiding voor zorgorganisaties"
+          subtitle="Elke organisatie heeft haar eigen context, cultuur en uitdagingen. Ik bied geen standaardpakketten, maar maatwerk dat past bij wat uw organisatie nodig heeft."
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Diensten grid -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-7">
+        {diensten.map((dienst, i) => (
+          <ServiceCard
+            title={dienst.title}
+            challenge={dienst.challenge}
+            approach={dienst.approach}
+            result={dienst.result}
+            icon={dienst.icon}
+            delay={Math.min(i + 1, 5) as 1 | 2 | 3 | 4 | 5}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-stone-50">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8 text-center">
+      <div class="reveal max-w-xl mx-auto">
+        <h2 class="font-serif text-2xl text-olive-dark mb-3">Herkent u een van deze vraagstukken?</h2>
+        <p class="text-ink-muted mb-7">Ik ga graag met u in gesprek — vrijblijvend en gericht op uw situatie.</p>
+        <Button href="/contact" variant="secondary" size="lg">Neem contact op</Button>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

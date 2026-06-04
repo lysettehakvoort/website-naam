@@ -1,0 +1,32 @@
+---
+interface Props {
+  number: number;
+  title: string;
+  subtitle: string;
+  description: string;
+  isLast?: boolean;
+}
+
+const { number, title, subtitle, description, isLast = false } = Astro.props;
+---
+
+<div class="reveal flex gap-6 md:gap-8">
+  <!-- Step indicator -->
+  <div class="flex flex-col items-center flex-shrink-0">
+    <div class="w-12 h-12 rounded-full bg-olive flex items-center justify-center text-white font-serif font-bold text-lg flex-shrink-0 shadow-md">
+      {number}
+    </div>
+    {!isLast && (
+      <div class="w-0.5 bg-gradient-to-b from-olive/40 to-olive/5 flex-1 mt-3 min-h-[3rem]" aria-hidden="true"></div>
+    )}
+  </div>
+
+  <!-- Content -->
+  <div class="pb-10">
+    <div class="mb-1">
+      <span class="text-xs font-semibold text-copper uppercase tracking-wider">{subtitle}</span>
+    </div>
+    <h3 class="font-serif font-semibold text-olive-dark text-xl mb-3">{title}</h3>
+    <p class="text-ink-muted leading-relaxed">{description}</p>
+  </div>
+</div>

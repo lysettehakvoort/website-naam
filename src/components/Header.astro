@@ -1,0 +1,119 @@
+---
+const navLinks = [
+  { href: '/diensten', label: 'Diensten' },
+  { href: '/werkwijze', label: 'Werkwijze' },
+  { href: '/over-mij', label: 'Over mij' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-stone-100 transition-shadow duration-300" id="site-header">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-18 py-4">
+
+      <!-- Logo -->
+      <a href="/" class="group flex items-center gap-3" aria-label="van Inzicht naar Impact — homepage">
+        <div class="w-9 h-9 rounded-lg bg-olive flex items-center justify-center flex-shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" class="w-5 h-5" aria-hidden="true">
+            <path d="M6 18 L12 6 L18 18" stroke="#A8C068" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8.5 13.5 L15.5 13.5" stroke="#B5743A" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="leading-tight">
+          <div class="font-serif font-semibold text-olive-dark text-[15px] leading-tight">van Inzicht naar Impact</div>
+          <div class="text-ink-muted text-[11px] leading-tight hidden sm:block">Dr. Lysette Hakvoort</div>
+        </div>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Hoofdnavigatie">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'text-sm font-medium transition-colors duration-200 relative py-1',
+              currentPath === link.href || currentPath.startsWith(link.href + '/')
+                ? 'text-olive after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-copper after:rounded-full'
+                : 'text-ink-muted hover:text-olive'
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-1.5 bg-copper hover:bg-copper-dark text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-all duration-200 hover:shadow-md"
+        >
+          Neem contact op
+        </a>
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="menu-toggle"
+        class="md:hidden flex flex-col gap-1.5 p-2 rounded-md hover:bg-stone-50 transition-colors"
+        aria-label="Menu openen"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="w-5 h-0.5 bg-ink rounded-full transition-all duration-300 menu-line-1"></span>
+        <span class="w-5 h-0.5 bg-ink rounded-full transition-all duration-300 menu-line-2"></span>
+        <span class="w-5 h-0.5 bg-ink rounded-full transition-all duration-300 menu-line-3"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden border-t border-stone-100 bg-white"
+    aria-hidden="true"
+  >
+    <nav class="max-w-6xl mx-auto px-6 py-6 flex flex-col gap-4" aria-label="Mobiele navigatie">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            'text-base font-medium py-2 border-b border-stone-50 transition-colors',
+            currentPath === link.href ? 'text-olive' : 'text-ink hover:text-olive'
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="/contact"
+        class="mt-2 inline-flex justify-center items-center bg-copper hover:bg-copper-dark text-white font-medium px-6 py-3 rounded-lg transition-colors"
+      >
+        Neem contact op
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- Spacer for fixed header -->
+<div class="h-[73px]" aria-hidden="true"></div>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const header = document.getElementById('site-header');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.contains('hidden') === false;
+    menu?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    menu?.setAttribute('aria-hidden', String(isOpen));
+  });
+
+  // Add shadow on scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      header?.classList.add('shadow-sm');
+    } else {
+      header?.classList.remove('shadow-sm');
+    }
+  });
+</script>
