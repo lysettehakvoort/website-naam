@@ -2,7 +2,7 @@
   "framework": "astro",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "installCommand": "npm install",
+  "installCommand": "npm install --force",
   "engines": {
     "node": "20.x"
   }
