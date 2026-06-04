@@ -2,8 +2,5 @@
   "framework": "astro",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "installCommand": "rm -rf node_modules && npm install",
-  "engines": {
-    "node": "20.x"
-  }
+  "installCommand": "rm -rf node_modules && npm install"
 }
