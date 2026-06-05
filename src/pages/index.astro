@@ -181,30 +181,86 @@ const onderscheidend = [
           <SectionHeading
             label="Werkwijze"
             title="Hoe we samenwerken"
-            subtitle="Een samenwerking begint altijd met luisteren. Van kennismaking tot borging werk ik stap voor stap — helder, betrokken en gericht op resultaat."
+            subtitle="Een samenwerking begint met het scherp krijgen van wat er werkelijk speelt. Van eerste analyse tot duurzame borging werk ik stap voor stap; doordacht, betrokken en gericht op duurzame verandering met impact in de praktijk."
           />
           <div class="mt-8">
             <Button href="/werkwijze" variant="outline">Lees meer over mijn werkwijze</Button>
           </div>
         </div>
 
-        <div class="flex flex-col gap-4">
-          {[
-            { n: '01', title: 'Kennismaking', sub: 'Uw vraag centraal' },
-            { n: '02', title: 'Analyse', sub: 'Begrijpen wat er speelt' },
-            { n: '03', title: 'Advies', sub: 'Richting en aanpak' },
-            { n: '04', title: 'Implementatie', sub: 'Samen aan de slag' },
-            { n: '05', title: 'Borging', sub: 'Duurzaam verankerd' },
-          ].map((step, i) => (
-            <div class={`reveal reveal-delay-${i + 1} flex items-center gap-4 bg-white rounded-xl px-5 py-4 border border-stone-100 hover:border-olive/20 hover:shadow-sm transition-all duration-200`}>
-              <span class="font-serif font-bold text-olive/30 text-lg w-8 flex-shrink-0">{step.n}</span>
-              <div class="w-px h-8 bg-stone-200 flex-shrink-0"></div>
-              <div>
-                <div class="font-semibold text-ink text-sm">{step.title}</div>
-                <div class="text-ink-muted text-xs">{step.sub}</div>
-              </div>
+        <!-- Van Inzicht naar Impact figuur -->
+        <div class="reveal reveal-delay-1 flex flex-col items-center justify-center py-4">
+
+          <!-- Inzicht -->
+          <div class="w-full flex flex-col items-center">
+            <div class="bg-olive-dark text-white rounded-2xl px-6 py-4 text-center w-full max-w-xs shadow-md">
+              <div class="text-2xl mb-1" aria-hidden="true">🔍</div>
+              <div class="font-serif font-semibold text-lg">Inzicht</div>
+              <div class="text-white/70 text-xs mt-1">Zichtbaar maken wat er werkelijk speelt</div>
             </div>
-          ))}
+          </div>
+
+          <!-- Pijl -->
+          <div class="flex flex-col items-center my-2">
+            <div class="w-px h-6 bg-olive/30"></div>
+            <svg class="w-5 h-5 text-olive" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+
+          <!-- Analyse & Strategie -->
+          <div class="w-full grid grid-cols-2 gap-3 max-w-xs">
+            <div class="bg-white border border-olive/20 rounded-xl px-4 py-3 text-center shadow-sm">
+              <div class="text-xl mb-1" aria-hidden="true">📊</div>
+              <div class="font-semibold text-olive-dark text-sm">Analyse</div>
+              <div class="text-ink-muted text-xs mt-0.5">Begrijpen wat er speelt</div>
+            </div>
+            <div class="bg-white border border-olive/20 rounded-xl px-4 py-3 text-center shadow-sm">
+              <div class="text-xl mb-1" aria-hidden="true">🧭</div>
+              <div class="font-semibold text-olive-dark text-sm">Strategie</div>
+              <div class="text-ink-muted text-xs mt-0.5">Richting en aanpak</div>
+            </div>
+          </div>
+
+          <!-- Pijl -->
+          <div class="flex flex-col items-center my-2">
+            <div class="w-px h-6 bg-olive/30"></div>
+            <svg class="w-5 h-5 text-olive" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+
+          <!-- Implementatie & Borging -->
+          <div class="w-full grid grid-cols-2 gap-3 max-w-xs">
+            <div class="bg-white border border-copper/20 rounded-xl px-4 py-3 text-center shadow-sm">
+              <div class="text-xl mb-1" aria-hidden="true">⚙️</div>
+              <div class="font-semibold text-copper-dark text-sm">Implementatie</div>
+              <div class="text-ink-muted text-xs mt-0.5">Samen aan de slag</div>
+            </div>
+            <div class="bg-white border border-copper/20 rounded-xl px-4 py-3 text-center shadow-sm">
+              <div class="text-xl mb-1" aria-hidden="true">🔒</div>
+              <div class="font-semibold text-copper-dark text-sm">Borging</div>
+              <div class="text-ink-muted text-xs mt-0.5">Duurzaam verankerd</div>
+            </div>
+          </div>
+
+          <!-- Pijl -->
+          <div class="flex flex-col items-center my-2">
+            <div class="w-px h-6 bg-copper/30"></div>
+            <svg class="w-5 h-5 text-copper" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+
+          <!-- Impact -->
+          <div class="w-full flex flex-col items-center">
+            <div class="bg-gradient-to-r from-copper to-copper-dark text-white rounded-2xl px-6 py-4 text-center w-full max-w-xs shadow-md">
+              <div class="text-2xl mb-1" aria-hidden="true">🌟</div>
+              <div class="font-serif font-semibold text-lg">Impact</div>
+              <div class="text-white/70 text-xs mt-1">Blijvende verandering in de praktijk</div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
