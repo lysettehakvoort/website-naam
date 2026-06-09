@@ -27,13 +27,41 @@ const stappen = [
     number: 4,
     title: 'Implementatie',
     subtitle: 'Samen aan de slag',
-    description: 'Als de opdracht ook begeleiding bij de uitvoering omvat, ondersteun ik de implementatie actief. Ik begeleid teams, faciliteer sessies, bewak de voortgang en stuur bij waar nodig. Ik werk nauw samen met de mensen in uw organisatie — want duurzame verandering komt van binnenuit.',
+    description: 'Als de opdracht ook begeleiding bij de uitvoering omvat, ondersteun ik de implementatie actief. Ik begeleid teams, faciliteer sessies, bewaak de voortgang en stuur bij waar nodig. Ik werk nauw samen met de mensen in uw organisatie, want duurzame verandering komt van binnenuit.',
   },
   {
     number: 5,
     title: 'Borging',
     subtitle: 'Duurzaam verankerd',
     description: 'Een traject is pas geslaagd als de verandering beklijft. Samen zorgen we dat de nieuwe aanpak, het geleerde of de verbeterde werkwijze wordt ingebed in de organisatie. Ik sluit een traject altijd af met een evaluatie: wat heeft het opgeleverd, wat hebben we geleerd, en welke stappen zijn er eventueel nog nodig?',
+  },
+];
+
+const kernwaarden = [
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"/></svg>',
+    value: 'Luisteren',
+    label: 'Ik begin met echt luisteren — niet met een standaardaanpak.',
+  },
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg>',
+    value: 'Gestructureerd',
+    label: 'Ik werk projectmatig, passend bij de structuur en planning van uw organisatie.',
+  },
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>',
+    value: 'Methodologisch',
+    label: 'Ik ben analytisch en werk waar passend met Evidence Based modellen en theorieën.',
+  },
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>',
+    value: 'Eerlijk',
+    label: 'U weet waar u aan toe bent, ook als de boodschap scherp is.',
+  },
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>',
+    value: 'Resultaatgericht',
+    label: 'Elk traject is gericht op impact: duurzaam resultaat in de praktijk.',
   },
 ];
 ---
@@ -50,7 +78,7 @@ const stappen = [
         <SectionHeading
           label="Werkwijze"
           title="Zo werken we samen"
-          subtitle="Elke samenwerking is anders. Toch verloopt elk traject langs dezelfde vijf stappen — van eerste kennismaking tot duurzame borging. Zo weet u altijd waar we staan en wat u kunt verwachten."
+          subtitle="Elke samenwerking is anders. Toch verloopt elk traject langs dezelfde vijf stappen, van eerste kennismaking tot duurzame borging. Zo weet u altijd waar we staan en wat u kunt verwachten."
         />
       </div>
     </div>
@@ -79,14 +107,12 @@ const stappen = [
       <div class="reveal text-center mb-12">
         <h2 class="font-serif text-heading text-olive-dark">Hoe ik altijd werk</h2>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
-        {[
-          { icon: '👂', value: 'Luisteren', label: 'Ik begin met echt luisteren — niet met een standaardaanpak.' },
-          { icon: '💡', value: 'Eerlijk', label: 'U weet waar u aan toe bent, ook als de boodschap scherp is.' },
-          { icon: '🎯', value: 'Resultaatgericht', label: 'Elk traject is gericht op duurzaam resultaat in de praktijk.' },
-        ].map((item, i) => (
-          <div class={`reveal reveal-delay-${i + 1} text-center bg-white rounded-2xl p-6 border border-stone-100`}>
-            <div class="text-4xl mb-3" aria-hidden="true">{item.icon}</div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {kernwaarden.map((item, i) => (
+          <div class={`reveal reveal-delay-${Math.min(i + 1, 5)} text-center bg-white rounded-2xl p-6 border border-stone-100`}>
+            <div class="w-12 h-12 rounded-xl bg-stone-50 flex items-center justify-center mx-auto mb-3">
+              <Fragment set:html={item.icon} />
+            </div>
             <div class="font-serif font-semibold text-olive-dark text-lg mb-2">{item.value}</div>
             <p class="text-ink-muted text-sm">{item.label}</p>
           </div>
@@ -95,13 +121,58 @@ const stappen = [
     </div>
   </section>
 
+  <!-- Tarieven -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start reveal">
+
+        <!-- Links: kop -->
+        <div>
+          <SectionHeading
+            label="Tarieven & afspraken"
+            title="Helder over aanpak en kosten"
+          />
+        </div>
+
+        <!-- Rechts: tekst -->
+        <div class="flex flex-col gap-6">
+          <div class="bg-white rounded-2xl border border-stone-100 p-8 shadow-sm border-l-4 border-l-olive">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-olive/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+                </svg>
+              </div>
+              <div class="space-y-3 text-ink-muted leading-relaxed text-sm">
+                <p>
+                  Transparantie en heldere samenwerking vind ik belangrijk. Daarom maken we vooraf heldere afspraken over aanpak, inzet en tarieven, passend bij de vraag en de context van de organisatie.
+                </p>
+                <p>
+                  Ik werk met algemene voorwaarden en een opdrachtbevestiging waarin verwachtingen, inzet en verantwoordelijkheden vooraf worden vastgelegd.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 text-sm text-ink-muted px-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-olive flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"/>
+            </svg>
+            Heeft u vragen over tarieven of de samenwerking? Neem gerust contact op voor een vrijblijvend gesprek.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
-  <section class="py-16">
+  <section class="py-16 bg-stone-50">
     <div class="max-w-6xl mx-auto px-6 lg:px-8 text-center">
       <div class="reveal max-w-xl mx-auto">
         <h2 class="font-serif text-2xl text-olive-dark mb-3">Klaar voor een eerste stap?</h2>
-        <p class="text-ink-muted mb-7">Een kennismaking is altijd vrijblijvend. Plan een gesprek en ontdek of samenwerking iets voor u is.</p>
-        <Button href="/contact" variant="secondary" size="lg">Start met een kennismaking</Button>
+        <p class="text-ink-muted mb-7">Een kennismaking is altijd vrijblijvend. Laten we verkennen of we iets voor elkaar kunnen betekenen.</p>
+        <Button href="/contact" variant="secondary" size="lg">Vrijblijvend kennismaken</Button>
       </div>
     </div>
   </section>
