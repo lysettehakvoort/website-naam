@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Button from '../components/Button.astro';
+
+const vraagstukken = [
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>',
+    vraag: 'Investeert uw organisatie in leren, maar weet u niet wat het oplevert?',
+    thema: 'Impact van leren en ontwikkelen',
+    toelichting: 'Veel organisaties investeren in scholing en ontwikkeling, maar hebben geen helder beeld van wat het daadwerkelijk oplevert. Ik help u de impact van leer- en ontwikkeltrajecten inzichtelijk te maken, zodat u gericht kunt bijsturen en verantwoording kunt afleggen.',
+  },
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>',
+    vraag: 'Wat staat de professionele ontwikkeling van uw verpleegkundigen werkelijk in de weg?',
+    thema: 'Bevorderende en belemmerende factoren',
+    toelichting: 'Niet elke organisatie slaagt erin een echte leercultuur te creëren. Ik breng in kaart welke factoren professionele ontwikkeling bevorderen én belemmeren in uw specifieke context, en vertaal die inzichten naar een aanpak die wél werkt.',
+  },
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>',
+    vraag: 'Hoe verankert u Evidence Based Practice in de dagelijkse zorgpraktijk, niet alleen op papier?',
+    thema: 'EBP en verpleegkundig onderzoek',
+    toelichting: 'Een EBP-cultuur ontstaat niet vanzelf. Ik ondersteun organisaties bij het realiseren van een onderzoeksinfrastructuur, het formuleren van een missie en visie op verpleegkundig onderzoek, en het schrijven van strategische notities die richting geven aan duurzame verankering van EBP.',
+  },
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>',
+    vraag: 'Hebben verpleegkundigen in uw organisatie echt invloed op de inrichting van de zorg?',
+    thema: 'Professionele zeggenschap',
+    toelichting: 'Professionele zeggenschap gaat verder dan het instellen van een VSB of VAR. Ik help organisaties bij het versterken van verpleegkundig leiderschap, zowel formeel als informeel, en ondersteun bij het ontwerp van zeggenschapsstructuren, beleidsnotities en strategische visie op de rol van verpleegkundigen in de organisatie.',
+  },
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c-.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>',
+    vraag: 'Heeft u een complex ontwikkelvraagstuk, maar ontbreekt de regie om het echt te laten landen?',
+    thema: 'Project- en programmamanagement',
+    toelichting: 'Complexe vraagstukken rondom professionele ontwikkeling vragen om stevige regie. Ik neem de projectleiding op mij voor trajecten op het snijvlak van leren, kwaliteit en organisatieverandering, en breng structuur, verbinding en resultaatgerichtheid mee van start tot borging.',
+  },
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"/></svg>',
+    vraag: 'Zoekt u een bestuurder of toezichthouder met diepgewortelde kennis van de verpleegkundige praktijk?',
+    thema: 'Bestuur en toezicht',
+    toelichting: 'Als bestuurder en toezichthouder breng ik een unieke combinatie mee van praktijkervaring, wetenschappelijke achtergrond en strategisch inzicht. Ik lever een bijdrage aan besturen en raden van toezicht waar de verpleegkundige stem structureel vertegenwoordigd moet zijn.',
+  },
+];
+---
+
+<BaseLayout
+  title="Vraagstukken — Van Inzicht naar Impact"
+  description="Vraagstukken rondom professionele ontwikkeling van verpleegkundigen, EBP, professionele zeggenschap en bestuur. Dr. Lysette Hakvoort helpt zorgorganisaties verder."
+>
+
+  <!-- Page hero -->
+  <section class="bg-stone-50 border-b border-stone-100 py-16 lg:py-20">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <SectionHeading
+          label="Vraagstukken"
+          title="Herkent u zich in een van deze vragen?"
+          subtitle="Ik werk aan vraagstukken die er toe doen. Hieronder een overzicht van de thema's waarop ik organisaties ondersteun. Herkent u uw situatie? Ik ga graag met u in gesprek."
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Vraagstukken -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="flex flex-col gap-6">
+        {vraagstukken.map((item, i) => (
+          <div class={`reveal reveal-delay-${Math.min(i + 1, 5)} group bg-white border border-stone-100 hover:border-olive/20 rounded-2xl p-8 transition-all duration-300 hover:shadow-md`}>
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
+
+              <!-- Icoon + thema -->
+              <div class="flex items-center gap-3 lg:flex-col lg:items-start">
+                <div class="w-11 h-11 rounded-xl bg-stone-50 group-hover:bg-olive/10 flex items-center justify-center flex-shrink-0 transition-colors duration-300">
+                  <Fragment set:html={item.icon} />
+                </div>
+                <span class="text-xs font-semibold text-copper uppercase tracking-wider leading-tight">{item.thema}</span>
+              </div>
+
+              <!-- Vraag + toelichting -->
+              <div class="lg:col-span-3">
+                <h3 class="font-serif text-xl text-olive-dark mb-3 leading-snug">{item.vraag}</h3>
+                <p class="text-ink-muted text-sm leading-relaxed">{item.toelichting}</p>
+              </div>
+
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-stone-50">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8 text-center">
+      <div class="reveal max-w-xl mx-auto">
+        <h2 class="font-serif text-2xl text-olive-dark mb-3">Herkent u uw vraagstuk hier?</h2>
+        <p class="text-ink-muted mb-7">Een eerste gesprek is altijd vrijblijvend. Ik denk graag met u mee.</p>
+        <Button href="/contact" variant="secondary" size="lg">Vrijblijvend kennismaken</Button>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
