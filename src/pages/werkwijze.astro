@@ -39,11 +39,6 @@ const stappen = [
 
 const kernwaarden = [
   {
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"/></svg>',
-    value: 'Luisteren',
-    label: 'Ik begin met echt luisteren — niet met een standaardaanpak.',
-  },
-  {
     icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg>',
     value: 'Gestructureerd',
     label: 'Ik werk projectmatig, passend bij de structuur en planning van uw organisatie.',
@@ -107,7 +102,7 @@ const kernwaarden = [
       <div class="reveal text-center mb-12">
         <h2 class="font-serif text-heading text-olive-dark">Hoe ik altijd werk</h2>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
         {kernwaarden.map((item, i) => (
           <div class={`reveal reveal-delay-${Math.min(i + 1, 5)} text-center bg-white rounded-2xl p-6 border border-stone-100`}>
             <div class="w-12 h-12 rounded-xl bg-stone-50 flex items-center justify-center mx-auto mb-3">
