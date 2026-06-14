@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.vaninzichtnaarimpact.nl/sitemap-index.xml
+Sitemap: https://www.lysettehakvoort-vaninzichtnaarimpact.nl/sitemap.xml
