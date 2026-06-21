@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>IMTT-NP — van Inzicht naar Impact</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', Calibri, Arial, sans-serif; color: #2C2C2C; background: #fff; }
+
+  /* PAGE LAYOUT */
+  .page { width: 210mm; min-height: 297mm; margin: 0 auto; position: relative; overflow: hidden; page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+
+  /* TYPOGRAPHY */
+  h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; }
+  .label-tag { display: inline-block; color: #B5743A; text-transform: uppercase; font-size: 9pt; letter-spacing: 2px; font-weight: 600; margin-bottom: 8px; }
+
+  /* ======= PAGE 1: COVER ======= */
+  .cover { background: #3D4A25; display: flex; flex-direction: column; }
+  .cover-top { padding: 36px 48px 0 48px; display: flex; align-items: center; justify-content: space-between; }
+  .cover-logo { display: flex; align-items: center; gap: 12px; }
+  .cover-logo-text { color: #A8C068; font-family: 'Playfair Display', Georgia, serif; font-size: 13pt; font-weight: 600; }
+  .cover-logo-sub { color: rgba(255,255,255,0.5); font-size: 9pt; }
+  .cover-hero { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 48px 48px 0 48px; }
+  .cover-eyebrow { color: #B5743A; text-transform: uppercase; font-size: 9pt; letter-spacing: 3px; font-weight: 600; margin-bottom: 16px; }
+  .cover-title { font-family: 'Playfair Display', Georgia, serif; color: #ffffff; font-size: 34pt; line-height: 1.15; margin-bottom: 20px; }
+  .cover-title span { color: #A8C068; }
+  .cover-sub { color: rgba(255,255,255,0.75); font-size: 12pt; line-height: 1.6; max-width: 480px; margin-bottom: 40px; }
+  .cover-question { background: rgba(168,192,104,0.15); border-left: 4px solid #A8C068; border-radius: 8px; padding: 20px 24px; max-width: 520px; }
+  .cover-question p { color: rgba(255,255,255,0.9); font-size: 11.5pt; line-height: 1.6; font-style: italic; font-family: 'Playfair Display', Georgia, serif; }
+  .cover-bottom { padding: 40px 48px 36px 48px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .cover-badge { background: rgba(181,116,58,0.2); border: 1px solid #B5743A; border-radius: 24px; padding: 8px 18px; color: #D4956A; font-size: 9pt; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+  .cover-wave { position: absolute; bottom: 0; left: 0; right: 0; height: 60px; }
+
+  /* ======= PAGE 2: INSTRUMENT ======= */
+  .instrument { background: #ffffff; display: flex; flex-direction: column; }
+  .instr-header { background: #F7F6F3; padding: 36px 48px 28px 48px; border-bottom: 3px solid #A8C068; }
+  .instr-header h2 { font-family: 'Playfair Display', Georgia, serif; color: #3D4A25; font-size: 20pt; margin-bottom: 8px; }
+  .instr-header p { color: #6B6B6B; font-size: 10.5pt; line-height: 1.6; max-width: 520px; }
+  .instr-body { padding: 32px 48px; flex: 1; }
+  .instr-intro { font-size: 11pt; color: #2C2C2C; line-height: 1.7; margin-bottom: 28px; }
+  .domains { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .domain-card { border-radius: 12px; padding: 20px 22px; }
+  .domain-card.context { background: #F7F6F3; border-top: 3px solid #5C6B3A; }
+  .domain-card.personal { background: #F7F6F3; border-top: 3px solid #A8C068; }
+  .domain-card.training { background: #F7F6F3; border-top: 3px solid #B5743A; }
+  .domain-card.trainer { background: #F7F6F3; border-top: 3px solid #D4956A; }
+  .domain-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+  .domain-icon.c { background: rgba(92,107,58,0.12); }
+  .domain-icon.p { background: rgba(168,192,104,0.2); }
+  .domain-icon.tr { background: rgba(181,116,58,0.15); }
+  .domain-icon.tn { background: rgba(212,149,106,0.2); }
+  .domain-card h3 { font-family: 'Playfair Display', Georgia, serif; color: #3D4A25; font-size: 11.5pt; margin-bottom: 6px; }
+  .domain-card p { font-size: 9.5pt; color: #6B6B6B; line-height: 1.5; }
+  .domain-card ul { font-size: 9pt; color: #6B6B6B; line-height: 1.6; padding-left: 14px; margin-top: 6px; }
+  .stat-row { display: flex; gap: 20px; margin-top: 4px; }
+  .stat { background: #3D4A25; color: #fff; border-radius: 10px; padding: 14px 20px; flex: 1; text-align: center; }
+  .stat .num { font-family: 'Playfair Display', Georgia, serif; font-size: 22pt; color: #A8C068; display: block; }
+  .stat .desc { font-size: 8.5pt; color: rgba(255,255,255,0.75); margin-top: 2px; }
+  .instr-footer { padding: 0 48px 28px 48px; display: flex; align-items: center; gap: 16px; }
+  .instr-footer svg { flex-shrink: 0; }
+  .instr-footer p { font-size: 9pt; color: #6B6B6B; line-height: 1.5; }
+
+  /* ======= PAGE 3: OUTCOMES ======= */
+  .outcomes { background: #ffffff; display: flex; flex-direction: column; }
+  .outcomes-header { background: #5C6B3A; padding: 36px 48px 28px 48px; }
+  .outcomes-header h2 { color: #ffffff; font-family: 'Playfair Display', Georgia, serif; font-size: 20pt; margin-bottom: 8px; }
+  .outcomes-header p { color: rgba(255,255,255,0.8); font-size: 10.5pt; line-height: 1.6; }
+  .outcomes-body { padding: 32px 48px; flex: 1; }
+  .benefit-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
+  .benefit { display: flex; gap: 16px; align-items: flex-start; }
+  .benefit-icon { width: 40px; height: 40px; background: rgba(92,107,58,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .benefit-text h3 { font-family: 'Playfair Display', Georgia, serif; color: #3D4A25; font-size: 11pt; margin-bottom: 3px; }
+  .benefit-text p { font-size: 9.5pt; color: #6B6B6B; line-height: 1.5; }
+  .use-cases { background: #F7F6F3; border-radius: 12px; padding: 22px 24px; margin-bottom: 24px; }
+  .use-cases h3 { font-family: 'Playfair Display', Georgia, serif; color: #3D4A25; font-size: 11pt; margin-bottom: 12px; }
+  .use-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .use-item { display: flex; gap: 8px; align-items: flex-start; font-size: 9.5pt; color: #2C2C2C; line-height: 1.5; }
+  .use-item::before { content: '→'; color: #B5743A; font-weight: 700; flex-shrink: 0; margin-top: 0px; }
+  .cta-box { background: #3D4A25; border-radius: 12px; padding: 24px 28px; display: flex; justify-content: space-between; align-items: center; }
+  .cta-box h3 { color: #ffffff; font-family: 'Playfair Display', Georgia, serif; font-size: 13pt; margin-bottom: 4px; }
+  .cta-box p { color: rgba(255,255,255,0.75); font-size: 9pt; }
+  .cta-contact { text-align: right; }
+  .cta-contact a { color: #A8C068; font-size: 9.5pt; text-decoration: none; display: block; }
+  .outcomes-footer { background: #F7F6F3; padding: 14px 48px; border-top: 1px solid #E5E1D8; display: flex; align-items: center; justify-content: space-between; }
+  .outcomes-footer .logo-sm { display: flex; align-items: center; gap: 8px; }
+  .outcomes-footer .logo-name { font-family: 'Playfair Display', Georgia, serif; color: #3D4A25; font-size: 10pt; font-weight: 600; }
+  .outcomes-footer .url { color: #6B6B6B; font-size: 9pt; }
+
+  @media print {
+    .page { margin: 0; width: 100%; }
+    body { background: white; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================== PAGE 1: COVER ======================== -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="cover-logo">
+      <svg width="36" height="36" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+        <rect width="96" height="96" rx="20" fill="#5C6B3A"/>
+        <path d="M24 72 L48 24 L72 72" stroke="#A8C068" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M34 54 L62 54" stroke="#B5743A" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <div class="cover-logo-text">van Inzicht naar Impact</div>
+        <div class="cover-logo-sub">Dr. Lysette Hakvoort</div>
+      </div>
+    </div>
+    <div class="cover-badge">Wetenschappelijk gevalideerd</div>
+  </div>
+
+  <div class="cover-hero">
+    <div class="cover-eyebrow">Impactmeting leer- en ontwikkeltrajecten</div>
+    <h1 class="cover-title">De IMTT-NP:<br><span>meet wat leren</span><br>werkelijk tegenhoudt</h1>
+    <p class="cover-sub">Een wetenschappelijk onderbouwd meetinstrument voor bevorderende en belemmerende factoren bij de professionele ontwikkeling van verpleegkundigen.</p>
+    <p style="color:rgba(255,255,255,0.45);font-size:9pt;margin-top:-32px;margin-bottom:32px;letter-spacing:0.3px;font-style:italic;">Integrated Measure for Training Transfer in Nursing Practice</p>
+    <div class="cover-question">
+      <p>Uw organisatie investeert in leer- en ontwikkeltrajecten voor verpleegkundigen. Maar weet u ook wat er werkelijk bijdraagt aan het leerresultaat — en wat het tegenhoudt?</p>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div style="display:flex;gap:32px;">
+      <div style="text-align:center;">
+        <div style="font-family:'Playfair Display',Georgia,serif;color:#A8C068;font-size:22pt;font-weight:700;">&gt;1500</div>
+        <div style="color:rgba(255,255,255,0.6);font-size:8.5pt;margin-top:2px;">verpleegkundigen toegepast</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Playfair Display',Georgia,serif;color:#A8C068;font-size:22pt;font-weight:700;">8</div>
+        <div style="color:rgba(255,255,255,0.6);font-size:8.5pt;margin-top:2px;">STZ ziekenhuizen</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Playfair Display',Georgia,serif;color:#A8C068;font-size:22pt;font-weight:700;">58</div>
+        <div style="color:rgba(255,255,255,0.6);font-size:8.5pt;margin-top:2px;">gevalideerde items</div>
+      </div>
+    </div>
+    <div style="color:rgba(255,255,255,0.4);font-size:8pt;text-align:right;">
+      Gepubliceerd in <em>Nurse Education Today</em>, 2025<br>
+      DOI: 10.1016/j.nedt.2024.106482
+    </div>
+  </div>
+</div>
+
+<!-- ======================== PAGE 2: INSTRUMENT ======================== -->
+<div class="page instrument">
+  <div class="instr-header">
+    <div class="label-tag">Het instrument</div>
+    <h2>Wat meet de IMTT-NP?</h2>
+    <p>De <strong>Integrated Measure for Training Transfer in Nursing Practice</strong> (IMTT-NP) brengt in kaart welke factoren het leerresultaat bevorderen of belemmeren — verdeeld over vier domeinen.</p>
+  </div>
+
+  <div class="instr-body">
+    <p class="instr-intro">
+      Veel leer- en ontwikkeltrajecten laten kennis en vaardigheden niet beklijven in de praktijk. Niet omdat de training slecht was, maar omdat persoonlijke, contextuele en trainingsgerelateerde factoren onzichtbaar blijven. De IMTT-NP maakt dit meetbaar, concreet en bespreekbaar.
+    </p>
+
+    <div class="domains">
+      <div class="domain-card context">
+        <div class="domain-icon c">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5C6B3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-6 9 6v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        </div>
+        <h3>Contextuele factoren</h3>
+        <p>De werkomgeving als bepalende factor.</p>
+        <ul>
+          <li>Ondersteuning door leidinggevende</li>
+          <li>Coaching door collega's</li>
+          <li>Weerstand tegen verandering</li>
+          <li>Sanctionering &amp; berispingen</li>
+        </ul>
+      </div>
+
+      <div class="domain-card personal">
+        <div class="domain-icon p">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5C6B3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>Persoonlijke factoren</h3>
+        <p>De verpleegkundige zelf als factor.</p>
+        <ul>
+          <li>Motivatie &amp; transferinspanning</li>
+          <li>Zelfeffectiviteit &amp; leerbereidheid</li>
+          <li>Persoonlijke capaciteit (tijdsdruk)</li>
+          <li>Prestatie- en beloningsverwachting</li>
+        </ul>
+      </div>
+
+      <div class="domain-card training">
+        <div class="domain-icon tr">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B5743A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h3>Trainingsinhoud</h3>
+        <p>Kwaliteit en aansluiting van de training.</p>
+        <ul>
+          <li>Aansluiting op de dagelijkse praktijk</li>
+          <li>Transfergericht ontwerp</li>
+          <li>Concrete toepasbaarheid</li>
+        </ul>
+      </div>
+
+      <div class="domain-card trainer">
+        <div class="domain-icon tn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B5743A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>Trainer / leerbegeleider</h3>
+        <p>De rol van de docent of trainer.</p>
+        <ul>
+          <li>Autonomieondersteuning</li>
+          <li>Competentieondersteuning</li>
+          <li>Verbondenheid &amp; vertrouwen</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat">
+        <span class="num">58</span>
+        <span class="desc">wetenschappelijk gevalideerde vragen</span>
+      </div>
+      <div class="stat">
+        <span class="num">12</span>
+        <span class="desc">meetbare subschalen</span>
+      </div>
+      <div class="stat">
+        <span class="num">4</span>
+        <span class="desc">domeinen in één instrument</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="instr-footer">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B5743A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <p>Het instrument is gebaseerd op het <em>Dynamic Transfer Model</em> en combineert twee internationaal gevalideerde instrumenten: de Learning Transfer System Inventory (LTSI) en de Learning Climate Questionnaire (LCQ), beide aangepast en gevalideerd voor de Nederlandse verpleegkundige ziekenhuiscontext.</p>
+  </div>
+</div>
+
+<!-- ======================== PAGE 3: OUTCOMES ======================== -->
+<div class="page outcomes">
+  <div class="outcomes-header">
+    <div class="label-tag" style="color:#D4956A;">Wat levert het op?</div>
+    <h2>Van meting naar duurzame impact</h2>
+    <p>De IMTT-NP geeft uw organisatie concrete handvatten om leer- en ontwikkeltrajecten te verbeteren — onderbouwd, praktisch en direct toepasbaar.</p>
+  </div>
+
+  <div class="outcomes-body">
+    <div class="benefit-list">
+      <div class="benefit">
+        <div class="benefit-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5C6B3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <div class="benefit-text">
+          <h3>Inzicht in wat écht speelt</h3>
+          <p>De meting brengt per domein in kaart welke factoren in uw organisatie belemmerend of bevorderend werken — niet op basis van aannames, maar op basis van data.</p>
+        </div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5C6B3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="benefit-text">
+          <h3>Basis voor gesprek tussen verpleegkundigen, leidinggevenden en opleiders</h3>
+          <p>De resultaten zijn zo opgezet dat ze een gezamenlijk gesprek ondersteunen over welke stappen gezet kunnen worden om transfer te bevorderen.</p>
+        </div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5C6B3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="benefit-text">
+          <h3>Meetbare terugkoppeling op uw investering</h3>
+          <p>Door de meting vóór én na een traject in te zetten, krijgt u zicht op de effecten van uw interventies en kunt u gericht bijsturen.</p>
+        </div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5C6B3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <div class="benefit-text">
+          <h3>Flexibel inzetbaar</h3>
+          <p>De domeinen zijn ook apart inzetbaar: meet uitsluitend de trainerskwaliteit, de werkomgeving of de persoonlijke factoren, afhankelijk van uw vraag.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="use-cases">
+      <h3>Voor wie is dit instrument bedoeld?</h3>
+      <div class="use-grid">
+        <div class="use-item">Zorgorganisaties die willen weten wat hun scholingsbudget oplevert</div>
+        <div class="use-item">HR &amp; L&amp;D-professionals die leertrajecten willen verbeteren</div>
+        <div class="use-item">Opleiders en trainers die hun eigen effectiviteit willen toetsen</div>
+        <div class="use-item">Bedrijven die trainingen ontwikkelen voor de zorg</div>
+        <div class="use-item">Bestuurders en beleidsmakers die willen investeren in duurzaam leren</div>
+        <div class="use-item">Onderzoekers die factoren voor kennisoverdracht in kaart willen brengen</div>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <div>
+        <h3>Interesse in een impactmeting voor uw organisatie?</h3>
+        <p>Neem contact op voor een vrijblijvend kennismakingsgesprek.</p>
+      </div>
+      <div class="cta-contact">
+        <a href="mailto:vaninzichtnaarimpact@outlook.com">vaninzichtnaarimpact@outlook.com</a>
+        <a href="tel:+31623922983">06-23922983</a>
+        <a href="https://www.lysettehakvoort-vaninzichtnaarimpact.nl">lysettehakvoort-vaninzichtnaarimpact.nl</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="outcomes-footer">
+    <div class="logo-sm">
+      <svg width="28" height="28" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+        <rect width="96" height="96" rx="20" fill="#5C6B3A"/>
+        <path d="M24 72 L48 24 L72 72" stroke="#A8C068" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M34 54 L62 54" stroke="#B5743A" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-name">van Inzicht naar Impact</span>
+    </div>
+    <span class="url">lysettehakvoort-vaninzichtnaarimpact.nl | Dr. Lysette Hakvoort</span>
+  </div>
+</div>
+
+</body>
+</html>
