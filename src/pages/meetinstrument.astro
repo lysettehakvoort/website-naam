@@ -1,0 +1,204 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Button from '../components/Button.astro';
+---
+
+<BaseLayout
+  title="IMTT-NP Meetinstrument — Van Inzicht naar Impact"
+  description="De IMTT-NP is een wetenschappelijk gevalideerd meetinstrument dat in kaart brengt welke factoren leren en kennistransfer bij verpleegkundigen bevorderen of belemmeren."
+>
+
+  <!-- Hero -->
+  <section class="bg-stone-50 border-b border-stone-100 py-16 lg:py-20">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <SectionHeading
+          label="Meetinstrument"
+          title="De IMTT-NP: meet wat leren werkelijk tegenhoudt"
+          subtitle="De Integrated Measure for Training Transfer in Nursing Practice (IMTT-NP) is een wetenschappelijk gevalideerd instrument dat bevorderende en belemmerende factoren voor kennistransfer bij verpleegkundigen in kaart brengt."
+        />
+        <div class="flex flex-wrap gap-4 mt-8">
+          <Button href="/contact" variant="primary">Vrijblijvend kennismaken</Button>
+          <a
+            href="/folder-imtt-np.html"
+            target="_blank"
+            class="inline-flex items-center gap-2 text-sm font-medium text-olive hover:text-olive-dark border border-olive/30 hover:border-olive/60 px-5 py-3 rounded-lg transition-colors duration-200"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            Bekijk de folder
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistieken -->
+  <section class="bg-olive-dark py-10">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-3 gap-8 text-center">
+        <div>
+          <div class="font-serif text-3xl text-olive-light font-bold">&gt;1500</div>
+          <div class="text-white/60 text-sm mt-1">verpleegkundigen toegepast</div>
+        </div>
+        <div>
+          <div class="font-serif text-3xl text-olive-light font-bold">8</div>
+          <div class="text-white/60 text-sm mt-1">STZ ziekenhuizen</div>
+        </div>
+        <div>
+          <div class="font-serif text-3xl text-olive-light font-bold">58</div>
+          <div class="text-white/60 text-sm mt-1">gevalideerde items</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vier domeinen -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl mb-12">
+        <span class="text-copper text-xs font-semibold uppercase tracking-widest">Wat wordt gemeten?</span>
+        <h2 class="font-serif text-2xl lg:text-3xl text-olive-dark mt-2 mb-4">Vier domeinen in één instrument</h2>
+        <p class="text-ink-muted leading-relaxed">Veel leer- en ontwikkeltrajecten laten kennis en vaardigheden niet beklijven in de praktijk — niet omdat de training slecht was, maar omdat persoonlijke, contextuele en trainingsgerelateerde factoren onzichtbaar blijven. De IMTT-NP maakt dit meetbaar, concreet en bespreekbaar.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Context -->
+        <div class="reveal bg-white border border-stone-100 rounded-2xl p-7 hover:shadow-md hover:border-olive/20 transition-all duration-300">
+          <div class="w-10 h-10 rounded-xl bg-olive/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+          </div>
+          <h3 class="font-serif text-lg text-olive-dark mb-2">Contextuele factoren</h3>
+          <p class="text-ink-muted text-sm mb-3">De werkomgeving als bepalende factor voor transfer.</p>
+          <ul class="text-sm text-ink-muted space-y-1">
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-copper flex-shrink-0"></span>Steun afdelingshoofd / organisatie</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-copper flex-shrink-0"></span>Coaching collega's</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-copper flex-shrink-0"></span>Weerstand tegen verandering</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-copper flex-shrink-0"></span>Aanspreekcultuur & sanctionering</li>
+          </ul>
+        </div>
+
+        <!-- Persoonlijk -->
+        <div class="reveal reveal-delay-1 bg-white border border-stone-100 rounded-2xl p-7 hover:shadow-md hover:border-olive/20 transition-all duration-300">
+          <div class="w-10 h-10 rounded-xl bg-olive/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+          </div>
+          <h3 class="font-serif text-lg text-olive-dark mb-2">Persoonlijke factoren</h3>
+          <p class="text-ink-muted text-sm mb-3">De verpleegkundige zelf als bepalende factor.</p>
+          <ul class="text-sm text-ink-muted space-y-1">
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-copper flex-shrink-0"></span>Motivatie & peer support</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-copper flex-shrink-0"></span>Beloning / erkenning</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-copper flex-shrink-0"></span>Capaciteiten (tijdsdruk)</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-copper flex-shrink-0"></span>Verwachtingen t.a.v. uitkomsten</li>
+          </ul>
+        </div>
+
+        <!-- Training -->
+        <div class="reveal reveal-delay-2 bg-white border border-stone-100 rounded-2xl p-7 hover:shadow-md hover:border-olive/20 transition-all duration-300">
+          <div class="w-10 h-10 rounded-xl bg-copper/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-copper" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/></svg>
+          </div>
+          <h3 class="font-serif text-lg text-olive-dark mb-2">Trainingsinhoud</h3>
+          <p class="text-ink-muted text-sm mb-3">Kwaliteit en aansluiting van het leertraject.</p>
+          <ul class="text-sm text-ink-muted space-y-1">
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-copper flex-shrink-0"></span>Inhoudvaliditeit / praktijkaansluiting</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-copper flex-shrink-0"></span>Transfergericht ontwerp</li>
+          </ul>
+        </div>
+
+        <!-- Trainer -->
+        <div class="reveal reveal-delay-3 bg-white border border-stone-100 rounded-2xl p-7 hover:shadow-md hover:border-olive/20 transition-all duration-300">
+          <div class="w-10 h-10 rounded-xl bg-copper/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-copper" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
+          </div>
+          <h3 class="font-serif text-lg text-olive-dark mb-2">Trainer / leerbegeleider</h3>
+          <p class="text-ink-muted text-sm mb-3">De kwaliteit van de leerbegeleiding (LCQ).</p>
+          <ul class="text-sm text-ink-muted space-y-1">
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-copper flex-shrink-0"></span>Autonomieondersteuning</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-copper flex-shrink-0"></span>Competentieondersteuning</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-copper flex-shrink-0"></span>Verbondenheidsondersteuning</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Folder preview -->
+  <section class="py-16 bg-stone-50 border-t border-stone-100">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+        <div>
+          <span class="text-copper text-xs font-semibold uppercase tracking-widest">Folder</span>
+          <h2 class="font-serif text-2xl text-olive-dark mt-2">Bekijk de informatiefoldr</h2>
+          <p class="text-ink-muted text-sm mt-2">Meer weten over de IMTT-NP? Bekijk of download de folder hieronder.</p>
+        </div>
+        <a
+          href="/folder-imtt-np.html"
+          target="_blank"
+          class="inline-flex items-center gap-2 text-sm font-medium text-white bg-olive hover:bg-olive-dark px-5 py-3 rounded-lg transition-colors duration-200 self-start"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          Openen in volledig scherm
+        </a>
+      </div>
+
+      <!-- iframe preview -->
+      <div class="rounded-2xl overflow-hidden shadow-lg border border-stone-200 bg-white">
+        <iframe
+          src="/folder-imtt-np.html"
+          title="IMTT-NP informatiefoldr"
+          class="w-full"
+          style="height: 620px; border: none;"
+          loading="lazy"
+        ></iframe>
+      </div>
+      <p class="text-xs text-ink-muted mt-3 text-center">Scroll in de folder voor alle drie de pagina's · Gebruik de knop hierboven om in volledig scherm te bekijken of op te slaan als PDF</p>
+    </div>
+  </section>
+
+  <!-- Wetenschappelijke basis -->
+  <section class="py-16 lg:py-20">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="bg-olive-dark rounded-2xl p-8 lg:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <span class="text-olive-light text-xs font-semibold uppercase tracking-widest">Wetenschappelijke basis</span>
+            <h2 class="font-serif text-2xl text-white mt-3 mb-4">Gebaseerd op het Dynamic Transfer Model</h2>
+            <p class="text-white/70 leading-relaxed text-sm">
+              De IMTT-NP combineert twee internationaal gevalideerde instrumenten — de Learning Transfer System Inventory (LTSI) en de Learning Climate Questionnaire (LCQ) — en is specifiek aangepast en gevalideerd voor de Nederlandse verpleegkundige ziekenhuiscontext.
+            </p>
+            <p class="text-white/50 text-xs mt-4 italic">
+              Hakvoort e.a. (2025). IMTT-NP. <em>Nurse Education Today</em>. DOI: 10.1016/j.nedt.2024.106482
+            </p>
+          </div>
+          <div class="flex flex-col gap-4">
+            <div class="bg-white/10 rounded-xl p-5">
+              <div class="text-olive-light font-serif text-lg font-bold mb-1">58 gevalideerde items</div>
+              <div class="text-white/60 text-sm">verdeeld over 15 subschalen en 4 domeinen</div>
+            </div>
+            <div class="bg-white/10 rounded-xl p-5">
+              <div class="text-olive-light font-serif text-lg font-bold mb-1">7-punts Likert-schaal</div>
+              <div class="text-white/60 text-sm">met omcodering naar een heldere −3 tot +3 rapportagescore</div>
+            </div>
+            <div class="bg-white/10 rounded-xl p-5">
+              <div class="text-olive-light font-serif text-lg font-bold mb-1">Goede modelfit</div>
+              <div class="text-white/60 text-sm">CFI=0.907 · TLI=0.900 · RMSEA=0.051</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-stone-50 border-t border-stone-100">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8 text-center">
+      <div class="reveal max-w-xl mx-auto">
+        <h2 class="font-serif text-2xl text-olive-dark mb-3">Interesse in een impactmeting?</h2>
+        <p class="text-ink-muted mb-7">Ik vertel u graag meer over de mogelijkheden voor uw organisatie. Een eerste gesprek is altijd vrijblijvend.</p>
+        <Button href="/contact" variant="secondary" size="lg">Vrijblijvend kennismaken</Button>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
