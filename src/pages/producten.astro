@@ -1,0 +1,663 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import BrugMotief from '../components/BrugMotief.astro';
+
+// ── Factsheets data — voeg hier eenvoudig extra sheets toe ──
+const factsheets = [
+  {
+    titel: 'Mind the Gap – van inzicht naar impact',
+    omschrijving: 'De kern van het proefschrift: waarom kennis niet vanzelf leidt tot verandering en wat er wél werkt in de verpleegkundige praktijk.',
+    bestand: '/downloads/factsheet-mind-the-gap.pdf',
+    grootte: '218 KB',
+  },
+  // TODO: voeg hier extra factsheets toe als {{ titel, omschrijving, bestand, grootte }}
+];
+
+// ── Zakkaartje-varianten ──
+const varianten = [
+  {
+    id: 'student',
+    label: 'Student',
+    kleur: 'olive',         // tailwind token
+    accentHex: '#A8C068',
+    bgClass: 'bg-olive/10 border-olive/30',
+    badgeClass: 'bg-olive/20 text-olive-dark',
+    doelgroep: 'Studenten verpleegkunde tijdens stage of werkplekleren.',
+    checkin: 'Elke week en bij de stage-evaluatie.',
+    bestand: '/downloads/zakkaartje-student.pdf',
+  },
+  {
+    id: 'pas-afgestudeerd',
+    label: 'Pas afgestudeerd',
+    kleur: 'moss',
+    accentHex: '#6E8240',
+    bgClass: 'bg-[#6E8240]/10 border-[#6E8240]/30',
+    badgeClass: 'bg-[#6E8240]/20 text-[#4a5a2a]',
+    doelgroep: 'Verpleegkundigen in het eerste jaar na afstuderen.',
+    checkin: 'Na 2 weken.',
+    bestand: '/downloads/zakkaartje-pas-afgestudeerd.pdf',
+  },
+  {
+    id: 'ervaren',
+    label: 'Ervaren zorgprofessional',
+    kleur: 'copper',
+    accentHex: '#B5743A',
+    bgClass: 'bg-copper/10 border-copper/30',
+    badgeClass: 'bg-copper/20 text-copper-dark',
+    doelgroep: 'Ervaren verpleegkundigen die een (bij)scholingstraject volgen.',
+    checkin: 'Na 4–6 weken.',
+    bestand: '/downloads/zakkaartje-ervaren.pdf',
+  },
+];
+
+// ── Afdelingspakketten ──
+const pakketten = [
+  {
+    naam: 'Basis',
+    highlight: false,
+    inhoud: [
+      '25 startsets (varianten naar wens)',
+      'A3-poster "Zo werkt het"',
+      'Gespreksleidraad "Samen van leren naar doen"',
+    ],
+    cta: 'Vraag een offerte aan',
+  },
+  {
+    naam: 'Plus',
+    highlight: false,
+    inhoud: [
+      'Alles uit Basis',
+      'Kick-off met het team',
+      'Evaluatiesessie na 6–8 weken',
+      'Logo van uw organisatie op de startkaart',
+    ],
+    cta: 'Vraag een offerte aan',
+  },
+  {
+    naam: 'Impact',
+    highlight: true,
+    badge: 'Meest compleet',
+    inhoud: [
+      'Alles uit Plus',
+      'Meting met de TransferKompas vóór en na',
+      'Rapportage van de uitkomsten',
+      'Adviesgesprek op basis van de meting',
+    ],
+    cta: 'Vraag een offerte aan',
+  },
+];
+---
+
+<BaseLayout
+  title="Producten | Zakkaartjes en factsheets voor leren in de zorg – Lysette Hakvoort"
+  description="Praktische zakkaartjes, afdelingspakketten en factsheets om leren te laten landen in de zorgpraktijk. Gebaseerd op promotieonderzoek van Dr. Lysette Hakvoort."
+>
+
+  <!-- ══════════════════════════════════════════════════════
+       1. HERO
+  ══════════════════════════════════════════════════════ -->
+  <section class="relative bg-gradient-to-br from-olive-dark via-olive to-olive/80 text-white overflow-hidden">
+    <!-- Decoratieve achtergrond -->
+    <div class="absolute inset-0 opacity-10" aria-hidden="true">
+      <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-olive-light -translate-y-1/2 translate-x-1/4 blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-[350px] h-[350px] rounded-full bg-copper -translate-y-1/4 -translate-x-1/4 blur-3xl"></div>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+        <!-- Tekst links -->
+        <div>
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-8">
+            <span class="w-1.5 h-1.5 rounded-full bg-olive-light animate-pulse" aria-hidden="true"></span>
+            <span class="text-sm text-white/90">Producten · van inzicht naar impact</span>
+          </div>
+
+          <h1 class="font-serif text-display font-bold text-white mb-6 leading-tight">
+            Leren is pas af<br />
+            <span class="text-olive-light">als de praktijk verandert</span>
+          </h1>
+
+          <p class="text-lg text-white/80 leading-relaxed mb-10 max-w-xl">
+            Praktische producten, rechtstreeks uit mijn promotieonderzoek, die helpen om leren daadwerkelijk te laten landen op de afdeling.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="#zakkaartjes"
+              class="inline-flex items-center gap-2 bg-white text-olive-dark font-semibold px-7 py-3.5 rounded-lg hover:bg-stone-50 transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
+              Bekijk de zakkaartjes
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </a>
+            <a
+              href="#factsheets"
+              class="inline-flex items-center gap-2 bg-transparent border-2 border-white/60 text-white font-semibold px-7 py-3.5 rounded-lg hover:bg-white/10 hover:border-white transition-all duration-200"
+            >
+              Download de factsheets
+            </a>
+          </div>
+        </div>
+
+        <!-- Brug-motief rechts -->
+        <div class="flex justify-center lg:justify-end">
+          <BrugMotief class="w-full max-w-md drop-shadow-lg" />
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Golf naar wit -->
+    <div class="absolute bottom-0 left-0 right-0" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full block">
+        <path d="M0 60L60 50C120 40 240 20 360 15C480 10 600 20 720 27.5C840 35 960 40 1080 37.5C1200 35 1320 25 1380 20L1440 15V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="white"/>
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       2. MAAK KENNIS MET CAROL
+  ══════════════════════════════════════════════════════ -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+
+      <div class="reveal text-center mb-12">
+        <span class="inline-flex items-center gap-2 text-copper font-semibold text-xs uppercase tracking-widest">
+          <span class="w-6 h-px bg-copper inline-block" aria-hidden="true"></span>
+          Het probleem
+        </span>
+        <h2 class="font-serif text-heading text-olive-dark mt-3">Maak kennis met Carol</h2>
+      </div>
+
+      <!-- Tijdlijn met drie momenten -->
+      <div class="relative">
+        <!-- Verbindingslijn (desktop) -->
+        <div class="hidden md:block absolute top-8 left-0 right-0 h-0.5 bg-stone-200" aria-hidden="true" style="left: 10%; right: 10%;"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Moment 1: Vóór -->
+          <div class="reveal bg-white rounded-2xl border border-stone-100 p-7 shadow-sm hover:shadow-md transition-shadow relative">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-full bg-olive/10 border-2 border-olive flex items-center justify-center flex-shrink-0 relative z-10 bg-white" aria-hidden="true">
+                <span class="font-serif font-bold text-olive text-sm">1</span>
+              </div>
+              <span class="font-semibold text-olive-dark text-sm uppercase tracking-wide">Vóór</span>
+            </div>
+            <p class="text-ink-muted leading-relaxed text-sm">
+              Carol moest een coachingstraining volgen. Verplicht. Ze had nog niet nagedacht over wat ze eigenlijk wilde leren — en niemand vroeg er naar.
+            </p>
+          </div>
+
+          <!-- Moment 2: Tijdens -->
+          <div class="reveal reveal-delay-1 bg-white rounded-2xl border border-stone-100 p-7 shadow-sm hover:shadow-md transition-shadow relative">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-full bg-olive/10 border-2 border-olive flex items-center justify-center flex-shrink-0 relative z-10 bg-white" aria-hidden="true">
+                <span class="font-serif font-bold text-olive text-sm">2</span>
+              </div>
+              <span class="font-semibold text-olive-dark text-sm uppercase tracking-wide">Tijdens</span>
+            </div>
+            <p class="text-ink-muted leading-relaxed text-sm">
+              De training was goed ontworpen. Carol stelde een leerdoel en was enthousiast. Ze zag precies hoe ze het kon toepassen op haar afdeling.
+            </p>
+          </div>
+
+          <!-- Moment 3: Een maand later -->
+          <div class="reveal reveal-delay-2 bg-white rounded-2xl border border-stone-100 p-7 shadow-sm hover:shadow-md transition-shadow relative">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-full bg-copper/10 border-2 border-copper flex items-center justify-center flex-shrink-0 relative z-10 bg-white" aria-hidden="true">
+                <span class="font-serif font-bold text-copper text-sm">3</span>
+              </div>
+              <span class="font-semibold text-copper-dark text-sm uppercase tracking-wide">Een maand later</span>
+            </div>
+            <p class="text-ink-muted leading-relaxed text-sm">
+              Carol wist haar leerdoel niet meer. Niemand had er vóór de training over gesproken — en ook daarna niet. De kloof bleef bestaan.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Citaat / conclusie -->
+      <div class="reveal mt-10 bg-stone-50 rounded-2xl p-8 lg:p-10 text-center border border-stone-100">
+        <p class="font-serif text-subheading text-olive-dark italic leading-relaxed max-w-2xl mx-auto">
+          "Carol is niet het probleem. Carol laat zien waar de kloof zit: tussen leren en doen."
+        </p>
+        <p class="mt-4 text-xs text-ink-muted">
+          Casus uit het proefschrift <em>Mind the Gap</em> (hoofdstuk 4)
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       3. WAT WE LEERDEN — drie inzichten
+  ══════════════════════════════════════════════════════ -->
+  <section class="py-16 lg:py-24 bg-stone-50">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+
+      <div class="reveal text-center mb-12">
+        <SectionHeading
+          label="Wat we leerden"
+          title="Drie inzichten uit het onderzoek"
+          align="center"
+        />
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          {
+            nr: '1',
+            titel: 'Een goede training is geen garantie',
+            tekst: 'Wat ná de training op de afdeling gebeurt, maakt het verschil. Transfer begint pas als de deur van de trainingsruimte achter u dichtgaat.',
+          },
+          {
+            nr: '2',
+            titel: 'Transfer is teamwerk',
+            tekst: 'Verpleegkundige, leidinggevende en opleider stemmen samen af — vóór, tijdens en na de training. Pas dan heeft leren een kans om te beklijven.',
+          },
+          {
+            nr: '3',
+            titel: 'One size fits none',
+            tekst: 'Een student heeft iets anders nodig dan een ervaren zorgprofessional. Ondersteuning op maat werkt; standaardoplossingen niet.',
+          },
+        ].map((item, i) => (
+          <div class={`reveal reveal-delay-${i + 1} bg-white rounded-2xl border border-stone-100 p-7 shadow-sm`}>
+            <div class="w-10 h-10 rounded-full bg-olive-light flex items-center justify-center mb-5" aria-hidden="true">
+              <span class="font-serif font-bold text-olive-dark text-base">{item.nr}</span>
+            </div>
+            <h3 class="font-serif font-semibold text-olive-dark text-lg mb-3">{item.titel}</h3>
+            <p class="text-ink-muted leading-relaxed text-sm">{item.tekst}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="reveal text-center mt-10 text-ink-muted">
+        Daarom ontwikkelde ik producten die precies op deze momenten helpen.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       4. ZAKKAARTJES
+  ══════════════════════════════════════════════════════ -->
+  <section id="zakkaartjes" class="py-16 lg:py-24 scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+
+      <div class="reveal mb-10">
+        <SectionHeading
+          label="Zakkaartjes"
+          title="Wat als Carol een kaartje in haar borstzak had gehad?"
+          subtitle="Een zakkaartje begeleidt de verpleegkundige op drie momenten: bij het stellen van een leerdoel vóór de training, het toepassen en reflecteren erna, en het bewuste keuze-moment om het geleerde te behouden, aan te passen of los te laten."
+        />
+      </div>
+
+      <!-- Drie stappen -->
+      <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-5 mb-14">
+        {[
+          {
+            stap: 'Vóór',
+            icoon: '<path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>',
+            tekst: 'Schrijf één leerdoel op en deel het met iemand op de afdeling.',
+          },
+          {
+            stap: 'Na',
+            icoon: '<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>',
+            tekst: 'Probeer het geleerde, vraag feedback en kleur een plank van uw brug.',
+          },
+          {
+            stap: 'Check-in',
+            icoon: '<path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>',
+            tekst: 'Bewuste keuze: behouden, aanpassen of loslaten?',
+          },
+        ].map((s, i) => (
+          <div class={`reveal reveal-delay-${i + 1} bg-white rounded-xl border border-stone-100 p-6 flex gap-4 items-start shadow-sm`}>
+            <div class="w-10 h-10 rounded-lg bg-olive/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <Fragment set:html={s.icoon} />
+              </svg>
+            </div>
+            <div>
+              <span class="text-xs font-semibold text-copper uppercase tracking-widest">{s.stap}</span>
+              <p class="text-ink-muted text-sm leading-relaxed mt-1">{s.tekst}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Drie varianten -->
+      <h3 class="reveal font-serif text-subheading text-olive-dark mb-6">Drie varianten, één aanpak</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+        {varianten.map((v, i) => (
+          <div class={`reveal reveal-delay-${i + 1} rounded-2xl border p-7 ${v.bgClass}`}>
+            <span class={`inline-block text-xs font-semibold uppercase tracking-widest rounded-full px-3 py-1 mb-4 ${v.badgeClass}`}>
+              {v.label}
+            </span>
+            <h4 class="font-serif font-semibold text-olive-dark text-lg mb-3">{v.label}</h4>
+            <dl class="space-y-2 text-sm text-ink-muted">
+              <div>
+                <dt class="font-medium text-ink">Voor wie</dt>
+                <dd>{v.doelgroep}</dd>
+              </div>
+              <div>
+                <dt class="font-medium text-ink">Check-in moment</dt>
+                <dd>{v.checkin}</dd>
+              </div>
+            </dl>
+            <div class="mt-5">
+              <a
+                href={v.bestand}
+                download
+                class="inline-flex items-center gap-2 text-sm font-medium hover:underline"
+                style={`color: ${v.accentHex}`}
+                aria-label={`Download gratis printversie zakkaartje ${v.label} (PDF)`}
+              >
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                Gratis printversie downloaden (PDF)
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Productkaarten grid -->
+      <h3 class="reveal font-serif text-subheading text-olive-dark mb-6">Fysieke sets bestellen</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <!-- Gratis PDF -->
+        <div class="reveal bg-white rounded-2xl border border-stone-100 p-7 shadow-sm flex flex-col">
+          <div class="w-10 h-10 rounded-lg bg-olive/10 flex items-center justify-center mb-4" aria-hidden="true">
+            <svg class="w-5 h-5 text-olive" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12l3 3m0 0l3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+            </svg>
+          </div>
+          <h4 class="font-serif font-semibold text-olive-dark text-lg mb-2">Gratis printversie</h4>
+          <p class="text-ink-muted text-sm leading-relaxed mb-4 flex-1">
+            Startkaart + 2 leerkaarten per variant. Printen en zelf uitknippen — ideaal om te proberen.
+          </p>
+          <p class="font-semibold text-olive-dark text-xl mb-5">Gratis</p>
+          <div class="space-y-2">
+            {varianten.map((v) => (
+              <a
+                href={v.bestand}
+                download
+                class="flex items-center gap-2 text-sm text-ink-muted hover:text-olive transition-colors"
+                aria-label={`Download zakkaartje ${v.label} (PDF)`}
+              >
+                <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                {v.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Startset -->
+        <div class="reveal reveal-delay-1 bg-white rounded-2xl border border-stone-100 p-7 shadow-sm flex flex-col">
+          <div class="w-10 h-10 rounded-lg bg-copper/10 flex items-center justify-center mb-4" aria-hidden="true">
+            <svg class="w-5 h-5 text-copper" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z"/>
+            </svg>
+          </div>
+          <h4 class="font-serif font-semibold text-olive-dark text-lg mb-2">Startset</h4>
+          <p class="text-ink-muted text-sm leading-relaxed mb-4 flex-1">
+            Startkaart, 10 leerkaarten en kaartring — alles wat één verpleegkundige nodig heeft voor een volledig leertraject.
+          </p>
+          <p class="font-semibold text-olive-dark text-xl mb-5">
+            <!-- TODO: vervang [PRIJS] door de werkelijke prijs -->
+            <span class="text-copper">[PRIJS]</span>
+          </p>
+          <Button href="/contact?onderwerp=startset" variant="secondary" size="sm">Bestellen</Button>
+        </div>
+
+        <!-- Navulset -->
+        <div class="reveal reveal-delay-2 bg-white rounded-2xl border border-stone-100 p-7 shadow-sm flex flex-col">
+          <div class="w-10 h-10 rounded-lg bg-copper/10 flex items-center justify-center mb-4" aria-hidden="true">
+            <svg class="w-5 h-5 text-copper" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+            </svg>
+          </div>
+          <h4 class="font-serif font-semibold text-olive-dark text-lg mb-2">Navulset</h4>
+          <p class="text-ink-muted text-sm leading-relaxed mb-4 flex-1">
+            10 leerkaarten — voor wie al een startset heeft en door wil groeien, of de set aanvult voor een collega.
+          </p>
+          <p class="font-semibold text-olive-dark text-xl mb-5">
+            <!-- TODO: vervang [PRIJS] door de werkelijke prijs -->
+            <span class="text-copper">[PRIJS]</span>
+          </p>
+          <Button href="/contact?onderwerp=navulset" variant="secondary" size="sm">Bestellen</Button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       5. AFDELINGSPAKKETTEN
+  ══════════════════════════════════════════════════════ -->
+  <section class="py-16 lg:py-24 bg-stone-50">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+
+      <div class="reveal mb-12">
+        <SectionHeading
+          label="Afdelingspakketten"
+          title="Voor de hele afdeling: zodat niemand er alleen voor staat"
+          subtitle="Leren beklijft niet als één persoon het alleen doet. Deze pakketten zorgen dat de hele afdeling tegelijk aan de slag gaat — met de juiste begeleiding."
+        />
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {pakketten.map((p, i) => (
+          <div class={`reveal reveal-delay-${i + 1} relative bg-white rounded-2xl border p-8 shadow-sm flex flex-col ${p.highlight ? 'border-olive shadow-md ring-2 ring-olive/20' : 'border-stone-100'}`}>
+            {p.highlight && p.badge && (
+              <span class="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center bg-olive text-white text-xs font-semibold px-3 py-1 rounded-full">
+                {p.badge}
+              </span>
+            )}
+            <h3 class="font-serif font-semibold text-olive-dark text-xl mb-5">{p.naam}</h3>
+            <ul class="space-y-2.5 mb-8 flex-1" role="list">
+              {p.inhoud.map((regel) => (
+                <li class="flex items-start gap-2.5 text-sm text-ink-muted">
+                  <svg class="w-4 h-4 text-olive flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                  </svg>
+                  {regel}
+                </li>
+              ))}
+            </ul>
+            <Button href="/contact?onderwerp=afdelingspakket" variant={p.highlight ? 'primary' : 'outline'} size="sm">
+              {p.cta}
+            </Button>
+          </div>
+        ))}
+      </div>
+
+      <!-- IMTT-NP uitleg -->
+      <div class="reveal mt-10 bg-olive-dark rounded-2xl p-8 text-white">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+          <div class="lg:col-span-2">
+            <span class="text-olive-light text-xs font-semibold uppercase tracking-widest">TransferKompas</span>
+            <h3 class="font-serif text-subheading text-white mt-2 mb-3">Wat is de TransferKompas?</h3>
+            <p class="text-white/75 text-sm leading-relaxed">
+              De TransferKompas (IMTT-NP) is een wetenschappelijk gevalideerd instrument met 58 vragen, verdeeld over vier domeinen: de verpleegkundige zelf, de werkomgeving, de training en de trainer. Het maakt zichtbaar welke factoren transfer helpen of hinderen — zodat uw organisatie gerichte keuzes kan maken.
+            </p>
+          </div>
+          <div class="flex justify-start lg:justify-end">
+            <a
+              href="/meetinstrument"
+              class="inline-flex items-center gap-2 bg-white text-olive-dark font-semibold px-6 py-3 rounded-lg hover:bg-stone-50 transition-colors text-sm"
+            >
+              Meer over de TransferKompas
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       6. GESPREKSLEIDRAAD
+  ══════════════════════════════════════════════════════ -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="reveal grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+        <div>
+          <SectionHeading
+            label="Gespreksleidraad"
+            title="Samen van leren naar doen"
+            subtitle="Eén leidraad voor zorgprofessionals, studenten, leidinggevenden én opleiders — met drie gerichte gesprekken van 5 tot 10 minuten: een voorgesprek, een check-in en een afrondend gesprek."
+          />
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a
+              href="/downloads/gespreksleidraad.pdf"
+              download
+              class="inline-flex items-center gap-2 bg-olive hover:bg-olive-dark text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md text-sm"
+              aria-label="Download de gespreksleidraad als PDF"
+            >
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+              Download de leidraad (PDF)
+            </a>
+            <span class="inline-flex items-center gap-2 text-ink-muted text-sm py-3">
+              <svg class="w-4 h-4 text-olive flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+              </svg>
+              Onderdeel van elk afdelingspakket
+            </span>
+          </div>
+        </div>
+
+        <!-- Visuele weergave leidraad -->
+        <div class="reveal reveal-delay-1">
+          <div class="bg-stone-50 rounded-2xl border border-stone-100 p-8">
+            <div class="space-y-5">
+              {[
+                { nr: '01', label: 'Voorgesprek', duur: '5–10 min', omschrijving: 'Vóór de training: leerdoel stellen en delen.' },
+                { nr: '02', label: 'Check-in',    duur: '5–10 min', omschrijving: 'Na de training: hoe gaat het toepassen?' },
+                { nr: '03', label: 'Afronden',    duur: '5–10 min', omschrijving: 'Bewuste keuze: behouden, aanpassen of loslaten.' },
+              ].map((stap) => (
+                <div class="flex gap-4 items-start">
+                  <div class="w-9 h-9 rounded-lg bg-olive-dark flex items-center justify-center flex-shrink-0">
+                    <span class="text-olive-light text-xs font-bold">{stap.nr}</span>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <span class="font-semibold text-olive-dark text-sm">{stap.label}</span>
+                      <span class="text-xs text-ink-muted border border-stone-200 rounded-full px-2 py-0.5">{stap.duur}</span>
+                    </div>
+                    <p class="text-ink-muted text-sm mt-0.5">{stap.omschrijving}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       7. FACTSHEETS
+  ══════════════════════════════════════════════════════ -->
+  <section id="factsheets" class="py-16 lg:py-24 bg-stone-50 scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+
+      <div class="reveal mb-10">
+        <SectionHeading
+          label="Factsheets"
+          title="Factsheets om te delen"
+          subtitle="Bondig overzicht van de kernbevindingen — om intern te delen, te gebruiken bij een presentatie of te overhandigen aan een leidinggevende."
+        />
+      </div>
+
+      <!-- Factsheet-grid — voeg via de frontmatter-array eenvoudig extra sheets toe -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {factsheets.map((f, i) => (
+          <div class={`reveal reveal-delay-${i + 1} bg-white rounded-2xl border border-stone-100 p-7 shadow-sm flex flex-col`}>
+            <!-- Thumbnail placeholder (TODO: vervang door echte thumbnail als afbeelding beschikbaar) -->
+            <div class="rounded-xl bg-olive/8 border border-olive/15 aspect-[4/3] mb-5 flex flex-col items-center justify-center gap-2" aria-hidden="true">
+              <svg class="w-10 h-10 text-olive/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+              </svg>
+              <span class="text-xs text-olive/50 font-medium">PDF</span>
+            </div>
+            <h3 class="font-serif font-semibold text-olive-dark text-base mb-2">{f.titel}</h3>
+            <p class="text-ink-muted text-sm leading-relaxed mb-5 flex-1">{f.omschrijving}</p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-ink-muted">{f.grootte}</span>
+              <a
+                href={f.bestand}
+                download
+                class="inline-flex items-center gap-2 bg-olive hover:bg-olive-dark text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+                aria-label={`Download factsheet ${f.titel} (PDF, ${f.grootte})`}
+              >
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                Download PDF
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       8. AFSLUITING
+  ══════════════════════════════════════════════════════ -->
+  <section class="relative py-20 lg:py-28 bg-gradient-to-br from-olive-dark via-olive to-olive/90 text-white overflow-hidden">
+    <div class="absolute inset-0 opacity-10" aria-hidden="true">
+      <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-olive-light blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-copper blur-3xl"></div>
+    </div>
+
+    <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
+
+      <!-- Brug-motief -->
+      <div class="flex justify-center mb-8" aria-hidden="true">
+        <BrugMotief class="w-64 opacity-80" />
+      </div>
+
+      <h2 class="font-serif text-heading text-white mb-2">Mind the gap.</h2>
+      <h2 class="font-serif text-heading text-olive-light mb-6">Bridge the gap.</h2>
+
+      <p class="text-white/80 text-lg leading-relaxed max-w-xl mx-auto mb-10">
+        Wat gaat u morgen anders doen, zodat leren wél leidt tot verandering?
+      </p>
+
+      <div class="flex flex-wrap gap-4 justify-center">
+        <Button href="/contact" variant="secondary" size="lg">Neem contact op</Button>
+        <a
+          href="#zakkaartjes"
+          class="inline-flex items-center gap-2 bg-transparent border-2 border-white/60 text-white font-semibold px-8 py-4 rounded-lg hover:bg-white/10 hover:border-white transition-all duration-200 text-base"
+        >
+          Bekijk de zakkaartjes
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>

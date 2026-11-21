@@ -1,0 +1,71 @@
+---
+interface Props {
+  class?: string;
+  width?: number;
+  height?: number;
+}
+const { class: className = '', width = 420, height = 220 } = Astro.props;
+---
+
+<!-- Bridge motif: two pillars (left olive-light, right copper) with a lime-green arch and deck -->
+<svg
+  viewBox="0 0 420 220"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="Brug van leren naar doen"
+  class={className}
+  width={width}
+  height={height}
+>
+  <!-- Background water / river suggestion -->
+  <ellipse cx="210" cy="210" rx="190" ry="18" fill="#A8C068" opacity="0.12"/>
+
+  <!-- Deck / road surface -->
+  <rect x="60" y="128" width="300" height="12" rx="3" fill="#A8C068"/>
+
+  <!-- Left pillar -->
+  <rect x="80" y="100" width="22" height="80" rx="4" fill="#A8C068"/>
+  <!-- Left pillar cap -->
+  <rect x="72" y="96" width="38" height="10" rx="3" fill="#A8C068"/>
+
+  <!-- Right pillar -->
+  <rect x="318" y="100" width="22" height="80" rx="4" fill="#B5743A"/>
+  <!-- Right pillar cap -->
+  <rect x="310" y="96" width="38" height="10" rx="3" fill="#B5743A"/>
+
+  <!-- Arch (SVG arc path) -->
+  <path
+    d="M 91 128 Q 210 30 329 128"
+    stroke="#A8C068"
+    stroke-width="8"
+    fill="none"
+    stroke-linecap="round"
+  />
+
+  <!-- Suspension cables (vertical lines from arch to deck) -->
+  {[130, 155, 180, 210, 240, 270, 295].map((x) => {
+    const t = (x - 91) / (329 - 91);
+    const archY = 128 - (128 - 30) * 4 * t * (1 - t);
+    return (
+      <line
+        x1={x}
+        y1={archY}
+        x2={x}
+        y2="128"
+        stroke="#A8C068"
+        stroke-width="1.5"
+        stroke-dasharray="3 2"
+        opacity="0.7"
+      />
+    );
+  })}
+
+  <!-- Label LEFT -->
+  <text x="91" y="198" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="13" font-style="italic" fill="#3D4A25" opacity="0.8">leren</text>
+
+  <!-- Label RIGHT -->
+  <text x="329" y="198" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="13" font-style="italic" fill="#8F5A2A" opacity="0.8">doen</text>
+
+  <!-- Arrow on deck pointing right -->
+  <path d="M 310 134 L 326 134 L 320 128 M 326 134 L 320 140" stroke="#B5743A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
