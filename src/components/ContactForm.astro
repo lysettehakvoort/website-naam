@@ -9,6 +9,9 @@
   id="contact-form"
   novalidate
 >
+  <!-- Verborgen onderwerpveld — wordt gevuld vanuit URL-parameter -->
+  <input type="hidden" id="form-onderwerp" name="onderwerp" value="" />
+
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
     <div>
       <label for="name" class="block text-sm font-medium text-ink mb-1.5">
@@ -69,6 +72,91 @@
     </div>
   </div>
 
+  <!-- Extra velden voor bestellingen (kenniskaarten, startset, navulset) -->
+  <div id="bestelling-velden" class="hidden flex flex-col gap-5">
+
+    <div class="bg-stone-50 rounded-xl border border-stone-100 p-5">
+      <p class="text-xs font-semibold text-olive-dark uppercase tracking-widest mb-4">Bestelgegevens</p>
+
+      <!-- Bezorgadres -->
+      <div class="mb-4">
+        <label for="adres" class="block text-sm font-medium text-ink mb-1.5">
+          Bezorgadres <span class="text-copper" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="text"
+          id="adres"
+          name="adres"
+          autocomplete="street-address"
+          class="w-full px-4 py-3 rounded-lg border border-stone-200 text-ink text-sm placeholder:text-ink-muted/60 focus:outline-none focus:ring-2 focus:ring-olive/30 focus:border-olive transition-colors duration-200 bg-white"
+          placeholder="Straat en huisnummer, postcode, plaats"
+        />
+      </div>
+
+      <!-- Leerkaarten-aantallen (alleen bij startset / navulset) -->
+      <div id="leerkaarten-velden" class="hidden">
+        <p class="text-xs text-ink-muted mb-3">Geef aan hoeveel sets u per variant wilt:</p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+          <div>
+            <label for="aantal-student" class="block text-xs font-medium text-ink mb-1">
+              Student
+            </label>
+            <input
+              type="number"
+              id="aantal-student"
+              name="aantal_student"
+              min="0"
+              value="0"
+              class="w-full px-3 py-2.5 rounded-lg border border-stone-200 text-ink text-sm focus:outline-none focus:ring-2 focus:ring-olive/30 focus:border-olive transition-colors bg-white"
+            />
+          </div>
+          <div>
+            <label for="aantal-pas-afgestudeerd" class="block text-xs font-medium text-ink mb-1">
+              Pas afgestudeerd
+            </label>
+            <input
+              type="number"
+              id="aantal-pas-afgestudeerd"
+              name="aantal_pas_afgestudeerd"
+              min="0"
+              value="0"
+              class="w-full px-3 py-2.5 rounded-lg border border-stone-200 text-ink text-sm focus:outline-none focus:ring-2 focus:ring-olive/30 focus:border-olive transition-colors bg-white"
+            />
+          </div>
+          <div>
+            <label for="aantal-ervaren" class="block text-xs font-medium text-ink mb-1">
+              Ervaren professional
+            </label>
+            <input
+              type="number"
+              id="aantal-ervaren"
+              name="aantal_ervaren"
+              min="0"
+              value="0"
+              class="w-full px-3 py-2.5 rounded-lg border border-stone-200 text-ink text-sm focus:outline-none focus:ring-2 focus:ring-olive/30 focus:border-olive transition-colors bg-white"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Aantal kenniskaarten-sets (alleen bij kenniskaarten) -->
+      <div id="kenniskaarten-velden" class="hidden mb-4">
+        <label for="aantal-sets" class="block text-sm font-medium text-ink mb-1.5">
+          Aantal sets <span class="text-copper" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="number"
+          id="aantal-sets"
+          name="aantal_sets"
+          min="1"
+          value="1"
+          class="w-full px-4 py-3 rounded-lg border border-stone-200 text-ink text-sm focus:outline-none focus:ring-2 focus:ring-olive/30 focus:border-olive transition-colors bg-white"
+        />
+      </div>
+    </div>
+
+  </div>
+
   <div>
     <label for="message" class="block text-sm font-medium text-ink mb-1.5">
       Uw vraag of bericht <span class="text-copper" aria-hidden="true">*</span>
@@ -101,6 +189,34 @@
 </form>
 
 <script>
+  // Lees onderwerpparameter uit URL en toon passende velden
+  const params = new URLSearchParams(window.location.search);
+  const onderwerp = params.get('onderwerp') || '';
+
+  const onderwerpField    = document.getElementById('form-onderwerp') as HTMLInputElement;
+  const bestellingVelden  = document.getElementById('bestelling-velden');
+  const leerkaartVelden   = document.getElementById('leerkaarten-velden');
+  const kenniskaartVelden = document.getElementById('kenniskaarten-velden');
+  const adresField        = document.getElementById('adres') as HTMLInputElement;
+  const aantalSetsField   = document.getElementById('aantal-sets') as HTMLInputElement;
+
+  if (onderwerpField) onderwerpField.value = onderwerp;
+
+  const bestellingen = ['startset', 'navulset', 'kenniskaarten', 'kenniskaarten-organisatie'];
+  if (onderwerp && bestellingen.includes(onderwerp)) {
+    bestellingVelden?.classList.remove('hidden');
+    adresField?.setAttribute('required', 'required');
+
+    if (onderwerp === 'startset' || onderwerp === 'navulset') {
+      leerkaartVelden?.classList.remove('hidden');
+    }
+    if (onderwerp === 'kenniskaarten') {
+      kenniskaartVelden?.classList.remove('hidden');
+      aantalSetsField?.setAttribute('required', 'required');
+    }
+  }
+
+  // Form submit
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const feedback = document.getElementById('form-feedback');
 
@@ -120,6 +236,7 @@
 
       if (response.ok) {
         form.reset();
+        if (onderwerpField) onderwerpField.value = onderwerp;
         if (feedback) {
           feedback.className = 'rounded-lg p-4 text-sm bg-olive/10 text-olive-dark border border-olive/20';
           feedback.textContent = 'Bedankt voor uw bericht. Ik neem zo snel mogelijk contact met u op.';

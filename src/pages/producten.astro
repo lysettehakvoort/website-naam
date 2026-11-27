@@ -4,6 +4,27 @@ import Button from '../components/Button.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import BrugMotief from '../components/BrugMotief.astro';
 
+// ── Centrale productconfiguratie — pas prijzen en teksten hier aan ──
+const config = {
+  startset: {
+    price: '€ 12,50',
+    shippingNote: 'excl. verzendkosten',
+  },
+  navulset: {
+    // TODO: prijs invullen wanneer bekend
+    price: '[PRIJS]',
+    shippingNote: 'excl. verzendkosten',
+  },
+  kenniskaarten: {
+    price: '€ 24,95',
+    shippingNote: 'excl. verzendkosten',
+    vatNote: 'De prijs is vrijgesteld van btw (KOR).',
+    introLabel: 'Introductieprijs',
+    afbeelding: '/images/kenniskaarten-productbeeld.webp',
+    afbeeldingAlt: "Set kenniskaarten aan een ring, met de startkaart 'Mind the gap. Bridge the gap.' en twee losse kaarten over de kloof in cijfers en de drie korte gesprekken",
+  },
+};
+
 // ── Factsheets data — voeg hier eenvoudig extra sheets toe ──
 const factsheets = [
   {
@@ -28,7 +49,7 @@ const varianten = [
   {
     id: 'student',
     label: 'Student',
-    kleur: 'olive',         // tailwind token
+    kleur: 'olive',
     accentHex: '#A8C068',
     bgClass: 'bg-olive/10 border-olive/30',
     badgeClass: 'bg-olive/20 text-olive-dark',
@@ -60,6 +81,18 @@ const varianten = [
   },
 ];
 
+// ── Kenniskaarten thema's ──
+const kenniskaartThemas = [
+  { nr: '1', label: 'Wat is training transfer?',    kleur: '#A8C068' },
+  { nr: '2', label: 'Het probleem: de kloof',        kleur: '#C27833' },
+  { nr: '3', label: 'Het Dynamic Transfer Model',    kleur: '#6E8240' },
+  { nr: '4', label: 'Gedeelde verantwoordelijkheid', kleur: '#8C9A72' },
+  { nr: '5', label: 'One size fits none',            kleur: '#C9A15E' },
+  { nr: '6', label: 'Het TransferKompas',            kleur: '#4F5E31' },
+  { nr: '7', label: 'De gespreksleidraad',           kleur: '#7A5C3E' },
+  { nr: '8', label: 'Slotkaart',                     kleur: '#33401F' },
+];
+
 // ── Afdelingspakketten ──
 const pakketten = [
   {
@@ -80,6 +113,7 @@ const pakketten = [
       'Kick-off met het team',
       'Evaluatiesessie na 6–8 weken',
       'Logo van uw organisatie op de startkaart',
+      'Kenniskaarten voor leidinggevende en opleider',
     ],
     cta: 'Vraag een offerte aan',
   },
@@ -92,6 +126,7 @@ const pakketten = [
       'Meting met de TransferKompas vóór en na',
       'Rapportage van de uitkomsten',
       'Adviesgesprek op basis van de meting',
+      'Kenniskaarten voor leidinggevende en opleider',
     ],
     cta: 'Vraag een offerte aan',
   },
@@ -99,8 +134,8 @@ const pakketten = [
 ---
 
 <BaseLayout
-  title="Producten | Zakkaartjes en factsheets voor leren in de zorg – Lysette Hakvoort"
-  description="Praktische zakkaartjes, afdelingspakketten en factsheets om leren te laten landen in de zorgpraktijk. Gebaseerd op promotieonderzoek van Dr. Lysette Hakvoort."
+  title="Producten | Zakkaartjes, kenniskaarten en factsheets voor leren in de zorg – Lysette Hakvoort"
+  description="Praktische zakkaartjes en kenniskaarten voor opleiders, leidinggevenden en zorgprofessionals. Factsheets en afdelingspakketten om leren te laten landen. Gebaseerd op promotieonderzoek van Dr. Lysette Hakvoort."
 >
 
   <!-- ══════════════════════════════════════════════════════
@@ -149,6 +184,10 @@ const pakketten = [
               Download de factsheets
             </a>
           </div>
+
+          <p class="mt-5 text-sm text-white/70">
+            Voor opleiders en leidinggevenden: <a href="#kenniskaarten" class="underline underline-offset-2 hover:text-white transition-colors">bekijk de kenniskaarten →</a>
+          </p>
         </div>
 
         <!-- Brug-motief rechts -->
@@ -169,7 +208,7 @@ const pakketten = [
 
 
   <!-- ══════════════════════════════════════════════════════
-       2. MAAK KENNIS MET CAROL
+       2. MAAK KENNIS MET KARIN
   ══════════════════════════════════════════════════════ -->
   <section class="py-16 lg:py-24">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
@@ -179,7 +218,7 @@ const pakketten = [
           <span class="w-6 h-px bg-copper inline-block" aria-hidden="true"></span>
           Het probleem
         </span>
-        <h2 class="font-serif text-heading text-olive-dark mt-3">Maak kennis met Carol</h2>
+        <h2 class="font-serif text-heading text-olive-dark mt-3">Maak kennis met Karin</h2>
       </div>
 
       <!-- Tijdlijn met drie momenten -->
@@ -197,7 +236,7 @@ const pakketten = [
               <span class="font-semibold text-olive-dark text-sm uppercase tracking-wide">Vóór</span>
             </div>
             <p class="text-ink-muted leading-relaxed text-sm">
-              Carol moest een coachingstraining volgen. Verplicht. Ze had nog niet nagedacht over wat ze eigenlijk wilde leren — en niemand vroeg er naar.
+              Karin moest een coachingstraining volgen. Verplicht. Ze had nog niet nagedacht over wat ze eigenlijk wilde leren — en niemand vroeg er naar.
             </p>
           </div>
 
@@ -210,7 +249,7 @@ const pakketten = [
               <span class="font-semibold text-olive-dark text-sm uppercase tracking-wide">Tijdens</span>
             </div>
             <p class="text-ink-muted leading-relaxed text-sm">
-              De training was goed ontworpen. Carol stelde een leerdoel en was enthousiast. Ze zag precies hoe ze het kon toepassen op haar afdeling.
+              De training was goed ontworpen. Karin stelde een leerdoel en was enthousiast. Ze zag precies hoe ze het kon toepassen op haar afdeling.
             </p>
           </div>
 
@@ -223,7 +262,7 @@ const pakketten = [
               <span class="font-semibold text-copper-dark text-sm uppercase tracking-wide">Een maand later</span>
             </div>
             <p class="text-ink-muted leading-relaxed text-sm">
-              Carol wist haar leerdoel niet meer. Niemand had er vóór de training over gesproken — en ook daarna niet. De kloof bleef bestaan.
+              Karin wist haar leerdoel niet meer. Niemand had er vóór de training over gesproken — en ook daarna niet. De kloof bleef bestaan.
             </p>
           </div>
         </div>
@@ -232,7 +271,7 @@ const pakketten = [
       <!-- Citaat / conclusie -->
       <div class="reveal mt-10 bg-stone-50 rounded-2xl p-8 lg:p-10 text-center border border-stone-100">
         <p class="font-serif text-subheading text-olive-dark italic leading-relaxed max-w-2xl mx-auto">
-          "Carol is niet het probleem. Carol laat zien waar de kloof zit: tussen leren en doen."
+          "Karin is niet het probleem. Karin laat zien waar de kloof zit: tussen leren en doen."
         </p>
         <p class="mt-4 text-xs text-ink-muted">
           Casus uit het proefschrift <em>Mind the Gap</em> (hoofdstuk 4)
@@ -302,7 +341,7 @@ const pakketten = [
       <div class="reveal mb-10">
         <SectionHeading
           label="Zakkaartjes"
-          title="Wat als Carol een kaartje in haar borstzak had gehad?"
+          title="Wat als Karin een kaartje in haar borstzak had gehad?"
           subtitle="Een zakkaartje begeleidt de verpleegkundige op drie momenten: bij het stellen van een leerdoel vóór de training, het toepassen en reflecteren erna, en het bewuste keuze-moment om het geleerde te behouden, aan te passen of los te laten."
         />
       </div>
@@ -420,10 +459,10 @@ const pakketten = [
           <p class="text-ink-muted text-sm leading-relaxed mb-4 flex-1">
             Startkaart, 10 leerkaarten en kaartring — alles wat één verpleegkundige nodig heeft voor een volledig leertraject.
           </p>
-          <p class="font-semibold text-olive-dark text-xl mb-5">
-            <!-- TODO: vervang [PRIJS] door de werkelijke prijs -->
-            <span class="text-copper">[PRIJS]</span>
-          </p>
+          <div class="mb-5">
+            <span class="font-semibold text-olive-dark text-xl">{config.startset.price}</span>
+            <span class="text-xs text-ink-muted ml-1">{config.startset.shippingNote}</span>
+          </div>
           <Button href="/contact?onderwerp=startset" variant="secondary" size="sm">Bestellen</Button>
         </div>
 
@@ -438,10 +477,15 @@ const pakketten = [
           <p class="text-ink-muted text-sm leading-relaxed mb-4 flex-1">
             10 leerkaarten — voor wie al een startset heeft en door wil groeien, of de set aanvult voor een collega.
           </p>
-          <p class="font-semibold text-olive-dark text-xl mb-5">
-            <!-- TODO: vervang [PRIJS] door de werkelijke prijs -->
-            <span class="text-copper">[PRIJS]</span>
-          </p>
+          <div class="mb-5">
+            {config.navulset.price === '[PRIJS]'
+              ? <span class="font-semibold text-copper text-xl">[PRIJS]</span>
+              : <>
+                  <span class="font-semibold text-olive-dark text-xl">{config.navulset.price}</span>
+                  <span class="text-xs text-ink-muted ml-1">{config.navulset.shippingNote}</span>
+                </>
+            }
+          </div>
           <Button href="/contact?onderwerp=navulset" variant="secondary" size="sm">Bestellen</Button>
         </div>
       </div>
@@ -451,9 +495,154 @@ const pakketten = [
 
 
   <!-- ══════════════════════════════════════════════════════
+       4b. KENNISKAARTEN
+  ══════════════════════════════════════════════════════ -->
+  <section id="kenniskaarten" class="py-16 lg:py-24 bg-stone-50 scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+
+      <!-- Label + heading -->
+      <div class="reveal mb-12">
+        <div class="inline-flex items-center gap-2 bg-[#C27833]/10 border border-[#C27833]/20 rounded-full px-4 py-1.5 mb-4">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#C27833]" aria-hidden="true"></span>
+          <span class="text-xs font-semibold text-[#8F5A2A] uppercase tracking-widest">Kenniskaarten · voor opleiders en leidinggevenden</span>
+        </div>
+        <h2 class="font-serif text-heading text-olive-dark mb-2">Wie helpt Karin na de training?</h2>
+        <p class="font-serif text-subheading text-[#6E8240] italic">De kennis achter de kaartjes, in uw zak.</p>
+      </div>
+
+      <!-- Intro + productafbeelding -->
+      <div class="reveal grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-14">
+
+        <div>
+          <p class="text-ink-muted leading-relaxed mb-6">
+            Karin volgde een goede training, maar niemand sprak er vooraf of achteraf met haar over. Transfer is teamwerk: de leidinggevende, de opleider en de praktijkbegeleider bepalen mee of leren landt. De kenniskaarten geven u de inzichten uit mijn promotieonderzoek in korte, praktische kaarten, met vragen om meteen mee aan de slag te gaan.
+          </p>
+
+          <!-- Thema's lijst -->
+          <h3 class="font-serif font-semibold text-olive-dark text-base mb-4">Wat zit erin</h3>
+          <ul class="space-y-2.5 mb-8" role="list">
+            {kenniskaartThemas.map((t) => (
+              <li class="flex items-center gap-3 text-sm text-ink-muted">
+                <span
+                  class="w-6 h-6 rounded flex items-center justify-center flex-shrink-0 text-white text-xs font-bold"
+                  style={`background-color: ${t.kleur}`}
+                  aria-hidden="true"
+                >{t.nr}</span>
+                {t.label}
+              </li>
+            ))}
+          </ul>
+
+          <!-- Drie kenmerken -->
+          <div class="space-y-4">
+            {[
+              {
+                icoon: '<path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>',
+                titel: 'Kort en wetenschappelijk onderbouwd',
+                tekst: 'Elk thema in een paar kaarten, gebaseerd op het proefschrift Mind the Gap.',
+              },
+              {
+                icoon: '<path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>',
+                titel: 'Om mee te werken',
+                tekst: 'Elk thema sluit af met een leervraagkaart en schrijfvlakken voor uw eigen afspraken.',
+              },
+              {
+                icoon: '<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/>',
+                titel: 'Makkelijk te vinden',
+                tekst: 'Een gekleurde randindex, een inhoudsopgave en een ring, zodat u de set kunt uitbreiden.',
+              },
+            ].map((k) => (
+              <div class="flex gap-3 items-start">
+                <div class="w-8 h-8 rounded-lg bg-[#C27833]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-4 h-4 text-[#C27833]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <Fragment set:html={k.icoon} />
+                  </svg>
+                </div>
+                <div>
+                  <span class="font-semibold text-olive-dark text-sm">{k.titel}.</span>
+                  <span class="text-ink-muted text-sm"> {k.tekst}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p class="mt-6 text-sm text-ink-muted italic">
+            Zo gebruikt u ze: in het teamoverleg, bij het voorbereiden van een training, in het opleidersoverleg of als voorbereiding op een gesprek met een medewerker.
+          </p>
+        </div>
+
+        <!-- Productafbeelding + bestelkaart -->
+        <div class="flex flex-col gap-6">
+          <!-- Afbeelding -->
+          <div class="reveal reveal-delay-1 rounded-2xl overflow-hidden border border-stone-100 shadow-sm">
+            <img
+              src={config.kenniskaarten.afbeelding}
+              alt={config.kenniskaarten.afbeeldingAlt}
+              class="w-full h-auto object-cover"
+              loading="lazy"
+              width="800"
+              height="534"
+            />
+          </div>
+
+          <!-- Bestelkaart -->
+          <div class="reveal reveal-delay-2 bg-white rounded-2xl border border-stone-100 p-7 shadow-sm">
+            <div class="flex items-start justify-between mb-4">
+              <h3 class="font-serif font-semibold text-olive-dark text-lg leading-snug max-w-[200px]">
+                Kenniskaarten<br/><span class="text-base font-normal italic">"Mind the gap. Bridge the gap."</span>
+              </h3>
+              <span class="inline-flex items-center bg-[#C27833] text-white text-xs font-semibold px-2.5 py-1 rounded-full flex-shrink-0 ml-3">
+                {config.kenniskaarten.introLabel}
+              </span>
+            </div>
+
+            <ul class="text-xs text-ink-muted space-y-1 mb-5">
+              <li>37 kaarten · 8 thema's</li>
+              <li>A7-formaat (74 × 105 mm)</li>
+              <li>Dubbelzijdig, mat papier · aan een kaartring</li>
+            </ul>
+
+            <div class="mb-5">
+              <span class="font-bold text-olive-dark text-2xl">{config.kenniskaarten.price}</span>
+              <span class="text-xs text-ink-muted ml-1 block mt-0.5">{config.kenniskaarten.shippingNote}</span>
+              <span class="text-xs text-ink-muted block">{config.kenniskaarten.vatNote}</span>
+            </div>
+
+            <div class="space-y-3">
+              <a
+                href="/contact?onderwerp=kenniskaarten"
+                class="flex items-center justify-center gap-2 w-full bg-[#4F5E31] hover:bg-[#3D4A25] text-white font-semibold px-5 py-3 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md text-sm"
+              >
+                Bestel de kenniskaarten
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+              <a
+                href="/contact?onderwerp=kenniskaarten-organisatie"
+                class="block text-center text-xs text-ink-muted hover:text-olive transition-colors py-1"
+              >
+                Voor uw team of organisatie (vanaf 10 sets)? Vraag een organisatieprijs aan →
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Overgangszin -->
+      <p class="reveal text-center text-ink-muted">
+        Wilt u met de hele afdeling aan de slag? Dan zijn de afdelingspakketten er voor u.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
        5. AFDELINGSPAKKETTEN
   ══════════════════════════════════════════════════════ -->
-  <section class="py-16 lg:py-24 bg-stone-50">
+  <section class="py-16 lg:py-24">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
 
       <div class="reveal mb-12">
@@ -521,7 +710,7 @@ const pakketten = [
   <!-- ══════════════════════════════════════════════════════
        6. GESPREKSLEIDRAAD
   ══════════════════════════════════════════════════════ -->
-  <section class="py-16 lg:py-24">
+  <section class="py-16 lg:py-24 bg-stone-50">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <div class="reveal grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
@@ -554,7 +743,7 @@ const pakketten = [
 
         <!-- Visuele weergave leidraad -->
         <div class="reveal reveal-delay-1">
-          <div class="bg-stone-50 rounded-2xl border border-stone-100 p-8">
+          <div class="bg-white rounded-2xl border border-stone-100 p-8">
             <div class="space-y-5">
               {[
                 { nr: '01', label: 'Voorgesprek', duur: '5–10 min', omschrijving: 'Vóór de training: leerdoel stellen en delen.' },
@@ -586,7 +775,7 @@ const pakketten = [
   <!-- ══════════════════════════════════════════════════════
        7. FACTSHEETS
   ══════════════════════════════════════════════════════ -->
-  <section id="factsheets" class="py-16 lg:py-24 bg-stone-50 scroll-mt-20">
+  <section id="factsheets" class="py-16 lg:py-24 scroll-mt-20">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
 
       <div class="reveal mb-10">
