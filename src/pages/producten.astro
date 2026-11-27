@@ -56,6 +56,8 @@ const varianten = [
     doelgroep: 'Studenten verpleegkunde tijdens stage of werkplekleren.',
     checkin: 'Elke week en bij de stage-evaluatie.',
     bestand: '/downloads/zakkaartje-student.pdf',
+    afbeelding: '/images/zakkaartjes-student.webp',
+    afbeeldingAlt: 'Leerkaarten-set "Van leren naar doen" voor studenten, met startkaart en losse leerkaarten',
   },
   {
     id: 'pas-afgestudeerd',
@@ -67,6 +69,8 @@ const varianten = [
     doelgroep: 'Verpleegkundigen in het eerste jaar na afstuderen.',
     checkin: 'Na 2 weken.',
     bestand: '/downloads/zakkaartje-pas-afgestudeerd.pdf',
+    afbeelding: '/images/zakkaartjes-pas-afgestudeerd.webp',
+    afbeeldingAlt: 'Leerkaarten-set "Van leren naar doen" voor pas afgestudeerden, met startkaart en losse leerkaarten',
   },
   {
     id: 'ervaren',
@@ -78,6 +82,8 @@ const varianten = [
     doelgroep: 'Ervaren verpleegkundigen die een (bij)scholingstraject volgen.',
     checkin: 'Na 4–6 weken.',
     bestand: '/downloads/zakkaartje-ervaren.pdf',
+    afbeelding: '/images/zakkaartjes-ervaren.webp',
+    afbeeldingAlt: 'Leerkaarten-set "Van leren naar doen" voor ervaren zorgprofessionals, met startkaart en losse leerkaarten',
   },
 ];
 
@@ -379,38 +385,64 @@ const pakketten = [
         ))}
       </div>
 
+      <!-- Overzichtsafbeelding alle drie varianten -->
+      <div class="reveal mb-10 rounded-2xl overflow-hidden border border-stone-100 shadow-sm">
+        <img
+          src="/images/zakkaartjes-overzicht.webp"
+          alt="De drie varianten van de leerkaarten-set 'Van leren naar doen': voor studenten, pas afgestudeerden en ervaren zorgprofessionals"
+          class="w-full h-auto object-cover"
+          loading="lazy"
+          width="1200"
+          height="800"
+        />
+      </div>
+
       <!-- Drie varianten -->
       <h3 class="reveal font-serif text-subheading text-olive-dark mb-6">Drie varianten, één aanpak</h3>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
         {varianten.map((v, i) => (
-          <div class={`reveal reveal-delay-${i + 1} rounded-2xl border p-7 ${v.bgClass}`}>
-            <span class={`inline-block text-xs font-semibold uppercase tracking-widest rounded-full px-3 py-1 mb-4 ${v.badgeClass}`}>
-              {v.label}
-            </span>
-            <h4 class="font-serif font-semibold text-olive-dark text-lg mb-3">{v.label}</h4>
-            <dl class="space-y-2 text-sm text-ink-muted">
-              <div>
-                <dt class="font-medium text-ink">Voor wie</dt>
-                <dd>{v.doelgroep}</dd>
+          <div class={`reveal reveal-delay-${i + 1} rounded-2xl border overflow-hidden ${v.bgClass}`}>
+            <!-- Productafbeelding -->
+            <div class="aspect-[4/3] overflow-hidden">
+              <img
+                src={v.afbeelding}
+                alt={v.afbeeldingAlt}
+                class="w-full h-full object-cover object-top"
+                loading="lazy"
+                width="600"
+                height="450"
+              />
+            </div>
+            <!-- Kaartinhoud -->
+            <div class="p-7">
+              <span class={`inline-block text-xs font-semibold uppercase tracking-widest rounded-full px-3 py-1 mb-4 ${v.badgeClass}`}>
+                {v.label}
+              </span>
+              <h4 class="font-serif font-semibold text-olive-dark text-lg mb-3">{v.label}</h4>
+              <dl class="space-y-2 text-sm text-ink-muted">
+                <div>
+                  <dt class="font-medium text-ink">Voor wie</dt>
+                  <dd>{v.doelgroep}</dd>
+                </div>
+                <div>
+                  <dt class="font-medium text-ink">Check-in moment</dt>
+                  <dd>{v.checkin}</dd>
+                </div>
+              </dl>
+              <div class="mt-5">
+                <a
+                  href={v.bestand}
+                  download
+                  class="inline-flex items-center gap-2 text-sm font-medium hover:underline"
+                  style={`color: ${v.accentHex}`}
+                  aria-label={`Download gratis printversie zakkaartje ${v.label} (PDF)`}
+                >
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  </svg>
+                  Gratis printversie downloaden (PDF)
+                </a>
               </div>
-              <div>
-                <dt class="font-medium text-ink">Check-in moment</dt>
-                <dd>{v.checkin}</dd>
-              </div>
-            </dl>
-            <div class="mt-5">
-              <a
-                href={v.bestand}
-                download
-                class="inline-flex items-center gap-2 text-sm font-medium hover:underline"
-                style={`color: ${v.accentHex}`}
-                aria-label={`Download gratis printversie zakkaartje ${v.label} (PDF)`}
-              >
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                </svg>
-                Gratis printversie downloaden (PDF)
-              </a>
             </div>
           </div>
         ))}
